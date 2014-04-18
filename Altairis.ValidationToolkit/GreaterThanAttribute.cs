@@ -15,7 +15,7 @@ namespace Altairis.ValidationToolkit {
         public bool AllowEqual { get; set; }
 
         public override string FormatErrorMessage(string name) {
-            return string.Format(ErrorMessageString, name, this.OtherPropertyName);
+            return string.Format(this.ErrorMessageString, name, this.OtherPropertyName);
         }
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext) {
