@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DateOffsetAttribute.cs" />
     <Compile Include="GreaterThanAttribute.cs" />
     <Compile Include="IcoAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
