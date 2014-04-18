@@ -7,15 +7,19 @@ namespace Altairis.ValidationToolkit {
         public DateOffsetAttribute(int yearsBeforeCurrent, int yearsAfterCurrent)
             : base("{0} must be between {1:d} and {2:d}.") {
 
-            this.MinimumDate = DateTime.Today.AddYears(yearsAfterCurrent);
+            this.MinimumDate = DateTime.Today.AddYears(yearsBeforeCurrent);
             this.MaximumDate = DateTime.Today.AddYears(yearsAfterCurrent);
         }
 
-        public DateOffsetAttribute(TimeSpan beforeCurrent, TimeSpan afterCurrent)
+        public DateOffsetAttribute(string beforeCurrent, string afterCurrent)
             : base("{0} must be between {1} and {2}.") {
 
-            this.MinimumDate = DateTime.Now.Add(beforeCurrent);
-            this.MaximumDate = DateTime.Now.Add(afterCurrent);
+            TimeSpan beforeCurrentTs = TimeSpan.Zero, afterCurrentTs = TimeSpan.Zero;
+            if (!string.IsNullOrEmpty(beforeCurrent) && !TimeSpan.TryParse(beforeCurrent, out beforeCurrentTs)) throw new ArgumentException("String cannot be parsed as TimeSpan.", "beforeCurrent");
+            if (!string.IsNullOrEmpty(afterCurrent) && !TimeSpan.TryParse(afterCurrent, out afterCurrentTs)) throw new ArgumentException("String cannot be parsed as TimeSpan.", "afterCurrent");
+
+            this.MinimumDate = DateTime.Now.Add(beforeCurrentTs);
+            this.MaximumDate = DateTime.Now.Add(afterCurrentTs);
         }
 
         public DateTime MinimumDate { get; private set; }
