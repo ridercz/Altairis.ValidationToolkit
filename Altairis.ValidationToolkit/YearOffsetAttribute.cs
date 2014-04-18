@@ -22,6 +22,9 @@ namespace Altairis.ValidationToolkit {
         public int MaximumYear { get; private set; }
 
         public override bool IsValid(object value) {
+            // Empty value is always valid
+            if (value == null) return true;
+
             // Convert value to integer
             int intValue;
             try {

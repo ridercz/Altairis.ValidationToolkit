@@ -29,6 +29,9 @@ namespace Altairis.ValidationToolkit {
         public DateTime MaximumDate { get; private set; }
 
         public override bool IsValid(object value) {
+            // Empty value is always valid
+            if (value == null) return true;
+
             // Convert value to DateTime
             DateTime dateValue;
             try {
