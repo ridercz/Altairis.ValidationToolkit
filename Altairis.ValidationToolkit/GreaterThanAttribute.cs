@@ -2,6 +2,8 @@
 using System.ComponentModel.DataAnnotations;
 
 namespace Altairis.ValidationToolkit {
+
+    [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
     public class GreaterThanAttribute : ValidationAttribute {
         public GreaterThanAttribute(string otherPropertyName)
             : base("{0} must be greater than {1}") {

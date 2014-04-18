@@ -3,6 +3,8 @@ using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
 
 namespace Altairis.ValidationToolkit {
+
+    [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
     public class IcoAttribute : ValidationAttribute {
 
         public IcoAttribute()
