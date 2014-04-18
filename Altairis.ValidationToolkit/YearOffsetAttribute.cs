@@ -10,10 +10,8 @@ namespace Altairis.ValidationToolkit {
 
         public YearOffsetAttribute(int beforeCurrent, int afterCurrent)
             : base("{0} must be between {1} and {2}.") {
-            if (beforeCurrent < 0) throw new ArgumentOutOfRangeException("beforeCurrent", "Parameter must be positive or zero.");
-            if (afterCurrent < 0) throw new ArgumentOutOfRangeException("afterCurrent", "Parameter must be positive or zero.");
 
-            this.MinimumYear = DateTime.Today.Year - beforeCurrent;
+            this.MinimumYear = DateTime.Today.Year + beforeCurrent;
             this.MaximumYear = DateTime.Today.Year + afterCurrent;
         }
 
