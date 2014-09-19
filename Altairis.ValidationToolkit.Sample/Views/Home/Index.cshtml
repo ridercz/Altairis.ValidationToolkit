@@ -48,6 +48,21 @@
                 @Html.EditorFor(x => x.Ico)
             </p>
         </fieldset>
+        <fieldset>
+            <legend>RequiredWhenAttribute</legend>
+            <p>
+                @Html.EditorFor(x => x.CheckBox)
+                @Html.LabelFor(x => x.CheckBox)
+            </p>
+            <p>
+                @Html.LabelFor(x => x.RequiredWhenChecked)<br />
+                @Html.EditorFor(x => x.RequiredWhenChecked)
+            </p>
+            <p>
+                @Html.LabelFor(x => x.RequiredEmptyWhenChecked)<br />
+                @Html.EditorFor(x => x.RequiredEmptyWhenChecked)
+            </p>
+        </fieldset>
         @Html.ValidationSummary();
         <input type="submit" value="Submit" />
     }

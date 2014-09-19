@@ -34,6 +34,22 @@ Validates if given year (expressed as `int`) falls within defined offset from cu
 * `[YearOffset(-120, 0)]` - year must be between from 120 years ago and current year.
 * `[YearOffset(0, 10)]` - year must be in next 10 years from now.
 
+### RequiredWhenAttribute
+Makes property required when some other property has specific value.
+
+* `[RequiredWhen("OtherProperty", "value")]` - property is required when `OtherProperty == "value"`.
+* `[RequiredWhen("OtherProperty", "value", NegateCondition = true)]` - property is required when `OtherProperty != "value"`.
+
+_Please note_: The default error message does not mention the master condition (it says _Field {0} is required_, not _Field {0} is required when some conditions are met_). It's recommended to override the message to be more specific to your model.
+
+### RequiredEmptyWhenAttribute
+Complements the `RequiredWhenAttribute`. Forces property to have `null` value when other property has specific value.
+
+* `[RequiredEmptyWhen("OtherProperty", "value")]` - property is required to be empty when `OtherProperty == "value"`.
+* `[RequiredEmptyWhen("OtherProperty", "value", NegateCondition = true)]` - property is required to be empty when `OtherProperty != "value"`.
+
+_Please note_: The default error message does not mention the master condition (it says _Field {0} is required to be empty_, not _Field {0} is required to be empty when some conditions are met_). It's recommended to override the message to be more specific to your model.
+
 License
 -------
 

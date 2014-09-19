@@ -43,5 +43,16 @@ namespace Altairis.ValidationToolkit.Sample.Models {
         [Ico]
         public string Ico { get; set; }
 
+        [Display(Name = "CheckBox value")]
+        public bool CheckBox { get; set; }
+
+        [Display(Name = "This value is required when checkbox is checked")]
+        [RequiredWhen("CheckBox", true)]
+        public string RequiredWhenChecked { get; set; }
+
+        [Display(Name = "This value is required to be empty when checkbox is checked")]
+        [RequiredEmptyWhen("CheckBox", true)]
+        public string RequiredEmptyWhenChecked { get; set; }
+
     }
 }
