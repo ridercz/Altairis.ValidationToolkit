@@ -30,6 +30,5 @@ namespace Altairis.ValidationToolkit {
             var chs = 11 - (sum % 11);
             return chs.ToString().EndsWith(s.Substring(7));
         }
-
     }
 }

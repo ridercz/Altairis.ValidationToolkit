@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 
 namespace Altairis.ValidationToolkit {
@@ -16,11 +12,11 @@ namespace Altairis.ValidationToolkit {
             this.OtherPropertyValue = otherPropertyValue;
         }
 
+        public bool NegateCondition { get; set; }
+
         public string OtherPropertyName { get; set; }
 
         public object OtherPropertyValue { get; set; }
-
-        public bool NegateCondition { get; set; }
 
         public override bool RequiresValidationContext {
             get { return true; }
@@ -39,8 +35,5 @@ namespace Altairis.ValidationToolkit {
             // Return error
             return new ValidationResult(this.FormatErrorMessage(validationContext.DisplayName));
         }
-
     }
-
 }
-

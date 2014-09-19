@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Altairis.ValidationToolkit {
 
@@ -12,14 +8,16 @@ namespace Altairis.ValidationToolkit {
 
         public YearOffsetAttribute(int beforeCurrent, int afterCurrent)
             : base("{0} must be between {1} and {2}.") {
-
             this.MinimumYear = DateTime.Today.Year + beforeCurrent;
             this.MaximumYear = DateTime.Today.Year + afterCurrent;
         }
 
-        public int MinimumYear { get; private set; }
-
         public int MaximumYear { get; private set; }
+
+        public int MinimumYear { get; private set; }
+        public override string FormatErrorMessage(string name) {
+            return string.Format(this.ErrorMessageString, name, this.MinimumYear, this.MaximumYear);
+        }
 
         public override bool IsValid(object value) {
             // Empty value is always valid
@@ -37,10 +35,5 @@ namespace Altairis.ValidationToolkit {
 
             return intValue >= MinimumYear && intValue <= this.MaximumYear;
         }
-
-        public override string FormatErrorMessage(string name) {
-            return string.Format(this.ErrorMessageString, name, this.MinimumYear, this.MaximumYear);
-        }
-
     }
 }

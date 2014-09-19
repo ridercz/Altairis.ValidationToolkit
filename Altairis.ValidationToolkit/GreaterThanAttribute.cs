@@ -5,16 +5,23 @@ namespace Altairis.ValidationToolkit {
 
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
     public class GreaterThanAttribute : ValidationAttribute {
+
         public GreaterThanAttribute(string otherPropertyName)
             : base("{0} must be greater than {1}") {
             this.OtherPropertyName = otherPropertyName;
         }
 
-        public string OtherPropertyName { get; private set; }
+        public bool AllowEqual { get; set; }
 
         public string OtherPropertyDisplayName { get; set; }
 
-        public bool AllowEqual { get; set; }
+        public string OtherPropertyName { get; private set; }
+
+        public override bool RequiresValidationContext {
+            get {
+                return true;
+            }
+        }
 
         public override string FormatErrorMessage(string name) {
             return string.Format(this.ErrorMessageString, name, this.OtherPropertyName);
@@ -38,12 +45,5 @@ namespace Altairis.ValidationToolkit {
                 return new ValidationResult(this.FormatErrorMessage(validationContext.DisplayName));
             }
         }
-
-        public override bool RequiresValidationContext {
-            get {
-                return true;
-            }
-        }
-
     }
 }
