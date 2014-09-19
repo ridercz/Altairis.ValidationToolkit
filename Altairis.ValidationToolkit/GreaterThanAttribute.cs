@@ -22,7 +22,7 @@ namespace Altairis.ValidationToolkit {
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext) {
             var comparableValue = value as IComparable;
-            var comparableOtherValue = this.GetOtherComparableValue(validationContext);
+            var comparableOtherValue = validationContext.GetPropertyValue<IComparable>(this.OtherPropertyName);
 
             // Empty or noncomparable values are valid - let others validate that
             if (comparableValue == null || comparableOtherValue == null) return ValidationResult.Success;
@@ -37,15 +37,6 @@ namespace Altairis.ValidationToolkit {
                 if (string.IsNullOrWhiteSpace(this.OtherPropertyDisplayName)) this.OtherPropertyDisplayName = this.OtherPropertyName;
                 return new ValidationResult(this.FormatErrorMessage(validationContext.DisplayName));
             }
-        }
-
-        protected IComparable GetOtherComparableValue(ValidationContext validationContext) {
-            var propertyInfo = validationContext.ObjectType.GetProperty(OtherPropertyName);
-            if (propertyInfo != null) {
-                var otherValue = propertyInfo.GetValue(validationContext.ObjectInstance, null);
-                return otherValue as IComparable;
-            }
-            return null;
         }
 
         public override bool RequiresValidationContext {
