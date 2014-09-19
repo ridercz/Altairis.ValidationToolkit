@@ -14,7 +14,7 @@ namespace Altairis.ValidationToolkit {
         }
 
         public DateOffsetAttribute(string beforeCurrent, string afterCurrent)
-            : base("{0} must be between {1} and {2}.") {
+            : base("{0} must be between {1:d} and {2:d}.") {
 
             TimeSpan beforeCurrentTs = TimeSpan.Zero, afterCurrentTs = TimeSpan.Zero;
             if (!string.IsNullOrEmpty(beforeCurrent) && !TimeSpan.TryParse(beforeCurrent, out beforeCurrentTs)) throw new ArgumentException("String cannot be parsed as TimeSpan.", "beforeCurrent");
@@ -23,6 +23,8 @@ namespace Altairis.ValidationToolkit {
             this.MinimumDate = DateTime.Now.Add(beforeCurrentTs);
             this.MaximumDate = DateTime.Now.Add(afterCurrentTs);
         }
+
+        public bool CompareTime { get; set; }
 
         public DateTime MinimumDate { get; private set; }
 
@@ -43,7 +45,12 @@ namespace Altairis.ValidationToolkit {
             }
 
             // Check if value is valid
-            return dateValue >= this.MinimumDate && dateValue <= this.MaximumDate;
+            if (this.CompareTime) {
+                return dateValue >= this.MinimumDate && dateValue <= this.MaximumDate;
+            }
+            else {
+                return dateValue.Date >= this.MinimumDate.Date && dateValue.Date <= this.MaximumDate.Date;
+            }
         }
 
         public override string FormatErrorMessage(string name) {
