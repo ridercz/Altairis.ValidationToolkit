@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="DateOffsetAttribute.cs" />
     <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="GreaterThanAttribute.cs" />
     <Compile Include="IcoAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

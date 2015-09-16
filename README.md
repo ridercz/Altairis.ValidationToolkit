@@ -17,7 +17,7 @@ Validates if given `DateTime` falls within defined offset from current date. Use
 * `[DateOffset(-120, 0)]` - date must be between 120 years ago and `DateTime.Today`.
 * `[DateOffset(null, "30.00.00.00")]` - date must be between `DateTime.Now` and `DateTime.Now` + 30 days.
 
-_Please note:_ By default, the attribute ignores time of day when comparing. If you want to take it in account, set `CompareTime` to `true` and modify error message formatting to show the time of day as well.
+*Please note:* By default, the attribute ignores time of day when comparing. If you want to take it in account, set `CompareTime` to `true` and modify error message formatting to show the time of day as well.
 
 ### GreaterThanAttribute
 Validates if given value is greater than value of some other property.
@@ -26,7 +26,7 @@ Validates if given value is greater than value of some other property.
 * `[GreaterThan("Minimum", AllowEqual = true)]` - value of this property must be greater or equal to value of property `Minimum`.
 
 ### IcoAttribute
-Validates if given string is valid IČO (_identification number of person_, the state-issued identifier used in Czech Republic).
+Validates if given string is valid IČO (*identification number of person*, the state-issued identifier used in Czech Republic).
 
 * `[Ico]` - string must be valid IČO (no options are available)
 
@@ -42,7 +42,7 @@ Makes property required when some other property has specific value.
 * `[RequiredWhen("OtherProperty", "value")]` - property is required when `OtherProperty == "value"`.
 * `[RequiredWhen("OtherProperty", "value", NegateCondition = true)]` - property is required when `OtherProperty != "value"`.
 
-_Please note_: The default error message does not mention the master condition (it says _Field {0} is required_, not _Field {0} is required when some conditions are met_). It's recommended to override the message to be more specific to your model.
+*Please note:* The default error message does not mention the master condition (it says *Field {0} is required*, not *Field {0} is required when some conditions are met*). It's recommended to override the message to be more specific to your model.
 
 ### RequiredEmptyWhenAttribute
 Complements the `RequiredWhenAttribute`. Forces property to have `null` value when other property has specific value.
@@ -50,7 +50,7 @@ Complements the `RequiredWhenAttribute`. Forces property to have `null` value wh
 * `[RequiredEmptyWhen("OtherProperty", "value")]` - property is required to be empty when `OtherProperty == "value"`.
 * `[RequiredEmptyWhen("OtherProperty", "value", NegateCondition = true)]` - property is required to be empty when `OtherProperty != "value"`.
 
-_Please note_: The default error message does not mention the master condition (it says _Field {0} is required to be empty_, not _Field {0} is required to be empty when some conditions are met_). It's recommended to override the message to be more specific to your model.
+*Please note:* The default error message does not mention the master condition (it says *Field {0} is required to be empty*, not *Field {0} is required to be empty when some conditions are met*). It's recommended to override the message to be more specific to your model.
 
 License
 -------

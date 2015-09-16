@@ -15,8 +15,8 @@ namespace Altairis.ValidationToolkit {
         public DateOffsetAttribute(string beforeCurrent, string afterCurrent)
             : base("{0} must be between {1:d} and {2:d}.") {
             TimeSpan beforeCurrentTs = TimeSpan.Zero, afterCurrentTs = TimeSpan.Zero;
-            if (!string.IsNullOrEmpty(beforeCurrent) && !TimeSpan.TryParse(beforeCurrent, out beforeCurrentTs)) throw new ArgumentException("String cannot be parsed as TimeSpan.", "beforeCurrent");
-            if (!string.IsNullOrEmpty(afterCurrent) && !TimeSpan.TryParse(afterCurrent, out afterCurrentTs)) throw new ArgumentException("String cannot be parsed as TimeSpan.", "afterCurrent");
+            if (!string.IsNullOrEmpty(beforeCurrent) && !TimeSpan.TryParse(beforeCurrent, out beforeCurrentTs)) throw new ArgumentException("String cannot be parsed as TimeSpan.", nameof(beforeCurrent));
+            if (!string.IsNullOrEmpty(afterCurrent) && !TimeSpan.TryParse(afterCurrent, out afterCurrentTs)) throw new ArgumentException("String cannot be parsed as TimeSpan.", nameof(afterCurrent));
 
             this.MinimumDate = DateTime.Now.Add(beforeCurrentTs);
             this.MaximumDate = DateTime.Now.Add(afterCurrentTs);

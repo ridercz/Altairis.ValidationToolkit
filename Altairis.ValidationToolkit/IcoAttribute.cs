@@ -28,7 +28,7 @@ namespace Altairis.ValidationToolkit {
 
             // Verify checksum number
             var chs = 11 - (sum % 11);
-            return chs.ToString().EndsWith(s.Substring(7));
+            return chs.ToString().EndsWith(s.Substring(7), StringComparison.Ordinal);
         }
     }
 }
