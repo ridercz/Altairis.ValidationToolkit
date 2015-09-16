@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Globalization;
+using System.Linq;
 
 namespace Altairis.ValidationToolkit {
 
@@ -24,12 +28,19 @@ namespace Altairis.ValidationToolkit {
         }
 
         public override string FormatErrorMessage(string name) {
-            return string.Format(this.ErrorMessageString, name, this.OtherPropertyName);
+            return string.Format(this.ErrorMessageString, name, this.OtherPropertyDisplayName);
         }
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext) {
+            // Get values
             var comparableValue = value as IComparable;
-            var comparableOtherValue = validationContext.GetPropertyValue<IComparable>(this.OtherPropertyName);
+            IComparable comparableOtherValue;
+            try {
+                comparableOtherValue = validationContext.GetPropertyValue<IComparable>(this.OtherPropertyName);
+            }
+            catch (ArgumentException aex) {
+                throw new InvalidOperationException("Other property not found", aex);
+            }
 
             // Empty or noncomparable values are valid - let others validate that
             if (comparableValue == null || comparableOtherValue == null) return ValidationResult.Success;
@@ -41,9 +52,12 @@ namespace Altairis.ValidationToolkit {
             }
             else {
                 // This property is smaller or equal to the other property
-                if (string.IsNullOrWhiteSpace(this.OtherPropertyDisplayName)) this.OtherPropertyDisplayName = this.OtherPropertyName;
+                if (string.IsNullOrWhiteSpace(this.OtherPropertyDisplayName)) {
+                    this.OtherPropertyDisplayName = validationContext.GetPropertyDisplayName(this.OtherPropertyName);
+                }
                 return new ValidationResult(this.FormatErrorMessage(validationContext.DisplayName));
             }
         }
+
     }
 }
