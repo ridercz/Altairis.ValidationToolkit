@@ -1,0 +1,71 @@
+﻿@model Altairis.ValidationToolkit.Sample.Models.SampleModel
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit sample model to test validation</title>
+    <meta name="description" content="Sample application for model validation" />
+</head>
+<body>
+    <h1>Edit sample model to test validation</h1>
+    @using (Html.BeginForm()) {
+        <fieldset>
+            <legend>DateOffsetAttribute</legend>
+            <p>
+                @Html.LabelFor(x => x.DateOfBirth)<br />
+                @Html.EditorFor(x => x.DateOfBirth)
+            </p>
+            <p>
+                @Html.LabelFor(x => x.NextMonthDate)<br />
+                @Html.EditorFor(x => x.NextMonthDate)
+            </p>
+        </fieldset>
+        <fieldset>
+            <legend>YearOffsetAttribute</legend>
+            <p>
+                @Html.LabelFor(x => x.YearOfBirth)<br />
+                @Html.EditorFor(x => x.YearOfBirth)
+            </p>
+        </fieldset>
+        <fieldset>
+            <legend>GreaterThanAttribute</legend>
+            <p>
+                @Html.LabelFor(x => x.MinValue)<br />
+                @Html.EditorFor(x => x.MinValue)
+            </p>
+            <p>
+                @Html.LabelFor(x => x.MaxValue)<br />
+                @Html.EditorFor(x => x.MaxValue)
+            </p>
+            <p>
+                @Html.LabelFor(x => x.MaxOrEqualValue)<br />
+                @Html.EditorFor(x => x.MaxOrEqualValue)
+            </p>
+        </fieldset>
+        <fieldset>
+            <legend>IcoAttribute</legend>
+            <p>
+                @Html.LabelFor(x => x.Ico)<br />
+                @Html.EditorFor(x => x.Ico)
+            </p>
+        </fieldset>
+        <fieldset>
+            <legend>RequiredWhenAttribute</legend>
+            <p>
+                @Html.EditorFor(x => x.CheckBox)
+                @Html.LabelFor(x => x.CheckBox)
+            </p>
+            <p>
+                @Html.LabelFor(x => x.RequiredWhenChecked)<br />
+                @Html.EditorFor(x => x.RequiredWhenChecked)
+            </p>
+            <p>
+                @Html.LabelFor(x => x.RequiredEmptyWhenChecked)<br />
+                @Html.EditorFor(x => x.RequiredEmptyWhenChecked)
+            </p>
+        </fieldset>
+        @Html.ValidationSummary();
+        <input type="submit" value="Submit" />
+    }
+</body>
+</html>
