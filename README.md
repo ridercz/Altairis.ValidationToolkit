@@ -1,15 +1,14 @@
-﻿Altairis Validation Toolkit
-===========================
+﻿# Altairis Validation Toolkit
 
-Set of various interesting .NET validation attributes for ASP.NET MVC and Web Forms model binding. You can use them to decorate model and ViewModel properties.
+Set of various interesting .NET validation attributes, usable for examplein ASP.NET MVC and Web Forms model binding. You can use them to decorate model and ViewModel properties.
 
-How to install
---------------
+The library is compatible with .NET Framework 4.5 and above and .NET Standard 2.0.
+
+## How to install
 
 The best way to install this library is to use the `Altairis.ValidationToolkit` NuGet package.
 
-Validation attributes included
-------------------------------
+## Validation attributes included
 
 ### DateOffsetAttribute
 Validates if given `DateTime` falls within defined offset from current date. Useful for validating birthdates etc.
@@ -52,7 +51,6 @@ Complements the `RequiredWhenAttribute`. Forces property to have `null` value wh
 
 *Please note:* The default error message does not mention the master condition (it says *Field {0} is required to be empty*, not *Field {0} is required to be empty when some conditions are met*). It's recommended to override the message to be more specific to your model.
 
-License
--------
+## License
 
 This library is open source software licensed under terms of the [MIT License](LICENSE.md).
