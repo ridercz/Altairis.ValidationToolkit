@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Reflection;
 
 namespace Altairis.ValidationToolkit {
 
@@ -31,20 +32,11 @@ namespace Altairis.ValidationToolkit {
             if (propertyName == null) throw new ArgumentNullException(nameof(propertyName));
             if (string.IsNullOrWhiteSpace(propertyName)) throw new ArgumentException("Value cannot be empty or whitespace only string.", nameof(propertyName));
 
-            var typeDescriptor = new AssociatedMetadataTypeTypeDescriptionProvider(validationContext.ObjectType).GetTypeDescriptor(validationContext.ObjectType);
-            var property = typeDescriptor.GetProperties().Find(propertyName, true);
+            var property = validationContext.ObjectType.GetRuntimeProperty(propertyName);
             if (property == null) throw new ArgumentException("Property not found", nameof(propertyName));
-            IEnumerable<Attribute> attributes = property.Attributes.Cast<Attribute>();
-            DisplayAttribute display = attributes.OfType<DisplayAttribute>().FirstOrDefault();
-            if (display != null) {
-                return display.GetName();
-            }
-            var displayName = attributes.OfType<DisplayNameAttribute>().FirstOrDefault();
-            if (displayName != null) {
-                return displayName.DisplayName;
-            }
-            return propertyName;
-
+            var attributes = CustomAttributeExtensions.GetCustomAttributes(property, true);
+            var display = attributes.OfType<DisplayAttribute>().FirstOrDefault();
+            return display?.GetName() ?? property.Name;
         }
 
     }
