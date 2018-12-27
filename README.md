@@ -1,4 +1,6 @@
-﻿# Altairis Validation Toolkit
+[![NuGet Status](https://img.shields.io/nuget/v/Altairis.ValidationToolkit.svg?style=flat-square&label=nuget)](https://www.nuget.org/packages/Altairis.ValidationToolkit/)
+
+# Altairis Validation Toolkit
 
 Set of various interesting .NET validation attributes, usable for examplein ASP.NET MVC and Web Forms model binding. You can use them to decorate model and ViewModel properties.
 
