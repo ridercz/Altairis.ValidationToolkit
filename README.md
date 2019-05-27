@@ -4,7 +4,7 @@
 
 Set of various interesting .NET validation attributes, usable for examplein ASP.NET MVC and Web Forms model binding. You can use them to decorate model and ViewModel properties.
 
-The library is compatible with .NET Framework 4.5 and above and .NET Standard 2.0.
+The library is compatible with .NET Standard 2.0.
 
 ## How to install
 
