@@ -1,23 +1,24 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net45</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>2.0.0</Version>
+    <Version>2.5.0</Version>
     <Authors>Michal Altair Valášek - Altairis</Authors>
     <Company>Altairis</Company>
     <Product>Altairis Validation Toolkit</Product>
-    <Description>Set of various interesting .NET validation attributes. Works with .NET Framework 4.5+ and .NET Core 2.0.</Description>
-    <Copyright>Copyright (c) Michal A. Valášek - Altairis, 2014-2017</Copyright>
-    <PackageLicenseUrl>https://github.com/ridercz/ValidationToolkit/master/LICENSE.md</PackageLicenseUrl>
-    <PackageProjectUrl>https://github.com/ridercz/ValidationToolkit</PackageProjectUrl>
-    <PackageIconUrl>http://www.cdn.altairis.cz/NuGet/icon-32x32.png</PackageIconUrl>
+    <Description>Set of various interesting .NET validation attributes. Works with .NET Standard 2.0</Description>
+    <Copyright>Copyright (c) Michal A. Valášek - Altairis, 2014-2019</Copyright>
+    <PackageLicenseUrl></PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/ridercz/Altairis.ValidationToolkit</PackageProjectUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/ridercz/Altairis.ValidationToolkit/master/NuGet-64x64.png</PackageIconUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/ridercz/Altairis.ValidationToolkit.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>
-    <Reference Include="System.ComponentModel.DataAnnotations">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.ComponentModel.DataAnnotations.dll</HintPath>
-    </Reference>
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
   </ItemGroup>
 
 </Project>
