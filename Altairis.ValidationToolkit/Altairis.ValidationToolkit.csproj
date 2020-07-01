@@ -3,22 +3,30 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>2.5.0</Version>
+    <Version>2.6.0</Version>
     <Authors>Michal Altair Valášek - Altairis</Authors>
     <Company>Altairis</Company>
     <Product>Altairis Validation Toolkit</Product>
-    <Description>Set of various interesting .NET validation attributes. Works with .NET Standard 2.0</Description>
-    <Copyright>Copyright (c) Michal A. Valášek - Altairis, 2014-2019</Copyright>
+    <Description>Set of various interesting .NET validation attributes. Works with .NET Standard 2.0.</Description>
+    <Copyright>Copyright (c) Michal A. Valášek - Altairis, 2014-2020</Copyright>
     <PackageLicenseUrl></PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/ridercz/Altairis.ValidationToolkit</PackageProjectUrl>
-    <PackageIconUrl>https://raw.githubusercontent.com/ridercz/Altairis.ValidationToolkit/master/NuGet-64x64.png</PackageIconUrl>
+    <PackageIconUrl></PackageIconUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/ridercz/Altairis.ValidationToolkit.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+    <PackageIcon>NuGet-64x64.png</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.6.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\NuGet-64x64.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
