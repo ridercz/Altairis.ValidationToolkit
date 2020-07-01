@@ -37,7 +37,7 @@ namespace Altairis.ValidationToolkit {
         }
 
         public DateOffsetAttribute(int yearsBeforeCurrent, int yearsAfterCurrent)
-            : this(yearsAfterCurrent, yearsAfterCurrent, "{0} must be between {1:d} and {2:d}.") { }
+            : this(yearsBeforeCurrent, yearsAfterCurrent, "{0} must be between {1:d} and {2:d}.") { }
 
         public DateOffsetAttribute(string beforeCurrent, string afterCurrent)
             : this(beforeCurrent, afterCurrent, "{0} must be between {1:d} and {2:d}.") { }
