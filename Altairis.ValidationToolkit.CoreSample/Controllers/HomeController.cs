@@ -7,10 +7,7 @@ namespace Altairis.ValidationToolkit.Sample.Controllers {
         public ActionResult Index() => this.View(SampleModel.SampleData);
 
         [HttpPost]
-        public ActionResult Index(SampleModel model) {
-            if (this.ModelState.IsValid) return this.RedirectToAction("Done");
-            return this.View(model);
-        }
+        public ActionResult Index(SampleModel model) => this.ModelState.IsValid ? this.RedirectToAction("Done") : (ActionResult)this.View(model);
 
         public ActionResult Done() => this.View();
 

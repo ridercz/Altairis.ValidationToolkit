@@ -31,10 +31,12 @@ namespace Altairis.ValidationToolkit {
             int intValue;
             try {
                 intValue = Convert.ToInt32(value);
+#pragma warning disable CA1031 // Do not catch general exception types
             } catch (Exception) {
                 // Value cannot be processed as int - let other attributes handle that
                 return true;
             }
+#pragma warning restore CA1031 // Do not catch general exception types
 
             return intValue >= this.MinimumYear && intValue <= this.MaximumYear;
         }

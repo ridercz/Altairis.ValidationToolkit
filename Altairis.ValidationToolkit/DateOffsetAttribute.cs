@@ -56,19 +56,23 @@ namespace Altairis.ValidationToolkit {
 
             // Convert value to DateTime
             DateTime dateValue;
+#pragma warning disable CA1031 // Do not catch general exception types
             try {
                 dateValue = Convert.ToDateTime(value);
             } catch (Exception) {
                 // Value cannot be processed as DateTime - let other attributes handle that
                 return true;
             }
+#pragma warning restore CA1031 // Do not catch general exception types
 
             // Check if value is valid
+#pragma warning disable IDE0046 // Convert to conditional expression
             if (this.CompareTime) {
                 return dateValue >= this.MinimumDate && dateValue <= this.MaximumDate;
             } else {
                 return dateValue.Date >= this.MinimumDate.Date && dateValue.Date <= this.MaximumDate.Date;
             }
+#pragma warning restore IDE0046 // Convert to conditional expression
         }
     }
 }
