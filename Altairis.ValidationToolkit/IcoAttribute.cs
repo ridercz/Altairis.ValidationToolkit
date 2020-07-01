@@ -8,7 +8,12 @@ namespace Altairis.ValidationToolkit {
     public class IcoAttribute : ValidationAttribute {
 
         public IcoAttribute()
-            : base("The field {0} must be valid IČO (identification number of person).") {
+            : this("The field {0} must be valid IČO (identification number of person).") { }
+
+        public IcoAttribute(Func<string> errorMessageAccessor) : base(errorMessageAccessor) {
+        }
+
+        public IcoAttribute(string errorMessage) : base(errorMessage) {
         }
 
         public override bool IsValid(object value) {

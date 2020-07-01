@@ -6,11 +6,18 @@ namespace Altairis.ValidationToolkit {
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
     public class RequiredWhenAttribute : ValidationAttribute {
 
-        public RequiredWhenAttribute(string otherPropertyName, object otherPropertyValue)
-            : base("Field {0} is required") {
+        public RequiredWhenAttribute(string otherPropertyName, object otherPropertyValue, Func<string> errorMessageAccessor) : base(errorMessageAccessor) {
             this.OtherPropertyName = otherPropertyName;
             this.OtherPropertyValue = otherPropertyValue;
         }
+
+        public RequiredWhenAttribute(string otherPropertyName, object otherPropertyValue, string errorMessage) : base(errorMessage) {
+            this.OtherPropertyName = otherPropertyName;
+            this.OtherPropertyValue = otherPropertyValue;
+        }
+
+        public RequiredWhenAttribute(string otherPropertyName, object otherPropertyValue)
+            : this(otherPropertyName, otherPropertyValue, "Field {0} is required.") { }
 
         public bool NegateCondition { get; set; }
 

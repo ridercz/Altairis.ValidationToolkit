@@ -6,14 +6,19 @@ namespace Altairis.ValidationToolkit {
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
     public class DateOffsetAttribute : ValidationAttribute {
 
-        public DateOffsetAttribute(int yearsBeforeCurrent, int yearsAfterCurrent)
-            : base("{0} must be between {1:d} and {2:d}.") {
+        public DateOffsetAttribute(int yearsBeforeCurrent, int yearsAfterCurrent, Func<string> errorMessageAccessor)
+            : base(errorMessageAccessor) {
             this.MinimumDate = DateTime.Today.AddYears(yearsBeforeCurrent);
             this.MaximumDate = DateTime.Today.AddYears(yearsAfterCurrent);
         }
 
-        public DateOffsetAttribute(string beforeCurrent, string afterCurrent)
-            : base("{0} must be between {1:d} and {2:d}.") {
+        public DateOffsetAttribute(int yearsBeforeCurrent, int yearsAfterCurrent, string errorMessage)
+            : base(errorMessage) {
+            this.MinimumDate = DateTime.Today.AddYears(yearsBeforeCurrent);
+            this.MaximumDate = DateTime.Today.AddYears(yearsAfterCurrent);
+        }
+
+        public DateOffsetAttribute(string beforeCurrent, string afterCurrent, Func<string> errorMessageAccessor) : base(errorMessageAccessor) {
             TimeSpan beforeCurrentTs = TimeSpan.Zero, afterCurrentTs = TimeSpan.Zero;
             if (!string.IsNullOrEmpty(beforeCurrent) && !TimeSpan.TryParse(beforeCurrent, out beforeCurrentTs)) throw new ArgumentException("String cannot be parsed as TimeSpan.", nameof(beforeCurrent));
             if (!string.IsNullOrEmpty(afterCurrent) && !TimeSpan.TryParse(afterCurrent, out afterCurrentTs)) throw new ArgumentException("String cannot be parsed as TimeSpan.", nameof(afterCurrent));
@@ -21,6 +26,21 @@ namespace Altairis.ValidationToolkit {
             this.MinimumDate = DateTime.Now.Add(beforeCurrentTs);
             this.MaximumDate = DateTime.Now.Add(afterCurrentTs);
         }
+
+        public DateOffsetAttribute(string beforeCurrent, string afterCurrent, string errorMessage) : base(errorMessage) {
+            TimeSpan beforeCurrentTs = TimeSpan.Zero, afterCurrentTs = TimeSpan.Zero;
+            if (!string.IsNullOrEmpty(beforeCurrent) && !TimeSpan.TryParse(beforeCurrent, out beforeCurrentTs)) throw new ArgumentException("String cannot be parsed as TimeSpan.", nameof(beforeCurrent));
+            if (!string.IsNullOrEmpty(afterCurrent) && !TimeSpan.TryParse(afterCurrent, out afterCurrentTs)) throw new ArgumentException("String cannot be parsed as TimeSpan.", nameof(afterCurrent));
+
+            this.MinimumDate = DateTime.Now.Add(beforeCurrentTs);
+            this.MaximumDate = DateTime.Now.Add(afterCurrentTs);
+        }
+
+        public DateOffsetAttribute(int yearsBeforeCurrent, int yearsAfterCurrent)
+            : this(yearsAfterCurrent, yearsAfterCurrent, "{0} must be between {1:d} and {2:d}.") { }
+
+        public DateOffsetAttribute(string beforeCurrent, string afterCurrent)
+            : this(beforeCurrent, afterCurrent, "{0} must be between {1:d} and {2:d}.") { }
 
         public bool CompareTime { get; set; }
 
@@ -40,8 +60,7 @@ namespace Altairis.ValidationToolkit {
             DateTime dateValue;
             try {
                 dateValue = Convert.ToDateTime(value);
-            }
-            catch (Exception) {
+            } catch (Exception) {
                 // Value cannot be processed as DateTime - let other attributes handle that
                 return true;
             }
@@ -49,8 +68,7 @@ namespace Altairis.ValidationToolkit {
             // Check if value is valid
             if (this.CompareTime) {
                 return dateValue >= this.MinimumDate && dateValue <= this.MaximumDate;
-            }
-            else {
+            } else {
                 return dateValue.Date >= this.MinimumDate.Date && dateValue.Date <= this.MaximumDate.Date;
             }
         }

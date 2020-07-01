@@ -5,12 +5,18 @@ namespace Altairis.ValidationToolkit {
 
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
     public class YearOffsetAttribute : ValidationAttribute {
-
-        public YearOffsetAttribute(int beforeCurrent, int afterCurrent)
-            : base("{0} must be between {1} and {2}.") {
+        public YearOffsetAttribute(int beforeCurrent, int afterCurrent, Func<string> errorMessageAccessor) : base(errorMessageAccessor) {
             this.MinimumYear = DateTime.Today.Year + beforeCurrent;
             this.MaximumYear = DateTime.Today.Year + afterCurrent;
         }
+
+        public YearOffsetAttribute(int beforeCurrent, int afterCurrent, string errorMessage) : base(errorMessage) {
+            this.MinimumYear = DateTime.Today.Year + beforeCurrent;
+            this.MaximumYear = DateTime.Today.Year + afterCurrent;
+        }
+
+        public YearOffsetAttribute(int beforeCurrent, int afterCurrent)
+            : this(beforeCurrent, afterCurrent, "{0} must be between {1} and {2}.") { }
 
         public int MaximumYear { get; private set; }
 
@@ -27,8 +33,7 @@ namespace Altairis.ValidationToolkit {
             int intValue;
             try {
                 intValue = Convert.ToInt32(value);
-            }
-            catch (Exception) {
+            } catch (Exception) {
                 // Value cannot be processed as int - let other attributes handle that
                 return true;
             }

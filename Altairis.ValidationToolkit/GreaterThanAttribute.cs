@@ -7,7 +7,15 @@ namespace Altairis.ValidationToolkit {
     public class GreaterThanAttribute : ValidationAttribute {
 
         public GreaterThanAttribute(string otherPropertyName)
-            : base("{0} must be greater than {1}") {
+            : this(otherPropertyName, "{0} must be greater than {1}.") { }
+
+        public GreaterThanAttribute(string otherPropertyName, Func<string> errorMessageAccessor)
+            : base(errorMessageAccessor) {
+            this.OtherPropertyName = otherPropertyName;
+        }
+
+        public GreaterThanAttribute(string otherPropertyName, string errorMessage)
+            : base(errorMessage) {
             this.OtherPropertyName = otherPropertyName;
         }
 
@@ -33,8 +41,7 @@ namespace Altairis.ValidationToolkit {
             IComparable comparableOtherValue;
             try {
                 comparableOtherValue = validationContext.GetPropertyValue<IComparable>(this.OtherPropertyName);
-            }
-            catch (ArgumentException aex) {
+            } catch (ArgumentException aex) {
                 throw new InvalidOperationException("Other property not found", aex);
             }
 
@@ -45,8 +52,7 @@ namespace Altairis.ValidationToolkit {
             if (compareResult == 1 || (this.AllowEqual && compareResult == 0)) {
                 // This property is greater than other property or equal when permitted
                 return ValidationResult.Success;
-            }
-            else {
+            } else {
                 // This property is smaller or equal to the other property
                 if (string.IsNullOrWhiteSpace(this.OtherPropertyDisplayName)) {
                     this.OtherPropertyDisplayName = validationContext.GetPropertyDisplayName(this.OtherPropertyName);
