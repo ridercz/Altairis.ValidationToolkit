@@ -31,7 +31,6 @@ namespace Altairis.ValidationToolkit {
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext) {
             // Get values
-            var comparableValue = value as IComparable;
             IComparable comparableOtherValue;
             try {
                 comparableOtherValue = validationContext.GetPropertyValue<IComparable>(this.OtherPropertyName);
@@ -40,7 +39,7 @@ namespace Altairis.ValidationToolkit {
             }
 
             // Empty or noncomparable values are valid - let others validate that
-            if (comparableValue == null || comparableOtherValue == null) return ValidationResult.Success;
+            if (!(value is IComparable comparableValue) || comparableOtherValue == null) return ValidationResult.Success;
 
             var compareResult = comparableValue.CompareTo(comparableOtherValue);
             if (compareResult == 1 || (this.AllowEqual && compareResult == 0)) {
