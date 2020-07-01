@@ -21,9 +21,7 @@ namespace Altairis.ValidationToolkit {
         public int MaximumYear { get; private set; }
 
         public int MinimumYear { get; private set; }
-        public override string FormatErrorMessage(string name) {
-            return string.Format(this.ErrorMessageString, name, this.MinimumYear, this.MaximumYear);
-        }
+        public override string FormatErrorMessage(string name) => string.Format(this.ErrorMessageString, name, this.MinimumYear, this.MaximumYear);
 
         public override bool IsValid(object value) {
             // Empty value is always valid
@@ -38,7 +36,7 @@ namespace Altairis.ValidationToolkit {
                 return true;
             }
 
-            return intValue >= MinimumYear && intValue <= this.MaximumYear;
+            return intValue >= this.MinimumYear && intValue <= this.MaximumYear;
         }
     }
 }

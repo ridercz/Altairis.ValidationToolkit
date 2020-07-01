@@ -25,15 +25,9 @@ namespace Altairis.ValidationToolkit {
 
         public string OtherPropertyName { get; private set; }
 
-        public override bool RequiresValidationContext {
-            get {
-                return true;
-            }
-        }
+        public override bool RequiresValidationContext => true;
 
-        public override string FormatErrorMessage(string name) {
-            return string.Format(this.ErrorMessageString, name, this.OtherPropertyDisplayName);
-        }
+        public override string FormatErrorMessage(string name) => string.Format(this.ErrorMessageString, name, this.OtherPropertyDisplayName);
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext) {
             // Get values

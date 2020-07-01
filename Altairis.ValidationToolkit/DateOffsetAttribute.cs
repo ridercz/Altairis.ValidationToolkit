@@ -48,9 +48,7 @@ namespace Altairis.ValidationToolkit {
 
         public DateTime MinimumDate { get; private set; }
 
-        public override string FormatErrorMessage(string name) {
-            return string.Format(this.ErrorMessageString, name, this.MinimumDate, this.MaximumDate);
-        }
+        public override string FormatErrorMessage(string name) => string.Format(this.ErrorMessageString, name, this.MinimumDate, this.MaximumDate);
 
         public override bool IsValid(object value) {
             // Empty value is always valid

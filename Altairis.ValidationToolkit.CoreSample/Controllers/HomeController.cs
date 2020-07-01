@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Altairis.ValidationToolkit.Sample.Models;
+﻿using Altairis.ValidationToolkit.Sample.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Altairis.ValidationToolkit.Sample.Controllers {
     public class HomeController : Controller {
 
-        public ActionResult Index() {
-            return this.View(SampleModel.SampleData);
-        }
+        public ActionResult Index() => this.View(SampleModel.SampleData);
 
         [HttpPost]
         public ActionResult Index(SampleModel model) {
@@ -18,9 +12,7 @@ namespace Altairis.ValidationToolkit.Sample.Controllers {
             return this.View(model);
         }
 
-        public ActionResult Done() {
-            return this.View();
-        }
+        public ActionResult Done() => this.View();
 
 
     }

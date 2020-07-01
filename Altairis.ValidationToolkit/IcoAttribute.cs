@@ -27,7 +27,7 @@ namespace Altairis.ValidationToolkit {
 
             // Calculate sum of digits
             var sum = 0;
-            for (int i = 0; i < 7; i++) {
+            for (var i = 0; i < 7; i++) {
                 sum += int.Parse(s[i].ToString()) * (8 - i);
             }
 

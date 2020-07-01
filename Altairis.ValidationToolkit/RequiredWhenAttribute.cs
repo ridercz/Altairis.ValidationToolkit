@@ -25,9 +25,7 @@ namespace Altairis.ValidationToolkit {
 
         public object OtherPropertyValue { get; set; }
 
-        public override bool RequiresValidationContext {
-            get { return true; }
-        }
+        public override bool RequiresValidationContext => true;
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext) {
             // Always succeed on non-empty value
