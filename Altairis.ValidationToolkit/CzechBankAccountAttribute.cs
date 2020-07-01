@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Altairis.ValidationToolkit {
-    public class CzechBankAccountAttribute : ValidationAttribute {
+    public sealed class CzechBankAccountAttribute : ValidationAttribute {
         // Bank codes avaliable from https://www.cnb.cz/cs/platebni-styk/.galleries/ucty_kody_bank/download/kody_bank_CR.csv
         // Valid as of 2020-07-01
         private static readonly string[] BankCodes = {

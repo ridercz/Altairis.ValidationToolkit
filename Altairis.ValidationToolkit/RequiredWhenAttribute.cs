@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace Altairis.ValidationToolkit {
 
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
-    public class RequiredWhenAttribute : ValidationAttribute {
+    public sealed class RequiredWhenAttribute : ValidationAttribute {
 
         public RequiredWhenAttribute(string otherPropertyName, object otherPropertyValue, Func<string> errorMessageAccessor) : base(errorMessageAccessor) {
             this.OtherPropertyName = otherPropertyName;

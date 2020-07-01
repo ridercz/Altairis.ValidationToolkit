@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 namespace Altairis.ValidationToolkit {
 
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
-    public class IcoAttribute : ValidationAttribute {
+    public sealed class IcoAttribute : ValidationAttribute {
 
         public IcoAttribute()
             : this("The field {0} must be valid IČO (identification number of person).") { }

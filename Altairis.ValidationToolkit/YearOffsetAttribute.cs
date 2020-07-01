@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace Altairis.ValidationToolkit {
 
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
-    public class YearOffsetAttribute : ValidationAttribute {
+    public sealed class YearOffsetAttribute : ValidationAttribute {
         public YearOffsetAttribute(int beforeCurrent, int afterCurrent, Func<string> errorMessageAccessor) : base(errorMessageAccessor) {
             this.MinimumYear = DateTime.Today.Year + beforeCurrent;
             this.MaximumYear = DateTime.Today.Year + afterCurrent;

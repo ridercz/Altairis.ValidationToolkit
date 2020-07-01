@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace Altairis.ValidationToolkit {
 
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
-    public class DateOffsetAttribute : ValidationAttribute {
+    public sealed class DateOffsetAttribute : ValidationAttribute {
 
         public DateOffsetAttribute(int yearsBeforeCurrent, int yearsAfterCurrent, Func<string> errorMessageAccessor)
             : base(errorMessageAccessor) {
