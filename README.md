@@ -2,7 +2,7 @@
 
 # Altairis Validation Toolkit
 
-Set of various interesting .NET validation attributes, usable for examplein ASP.NET MVC and Web Forms model binding. You can use them to decorate model and ViewModel properties.
+Set of various interesting .NET validation attributes, usable for example in ASP.NET MVC, Razor Pages, and Web Forms model binding. You can use them to decorate model and ViewModel properties.
 
 The library is compatible with .NET Standard 2.0.
 
