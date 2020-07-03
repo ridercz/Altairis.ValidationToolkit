@@ -46,7 +46,7 @@ namespace Altairis.ValidationToolkit {
                 var chs = 0;
                 for (var i = 0; i < part.Length; i++) {
                     var num = int.Parse(part.Substring(i, 1));
-                    var weight = (int)Math.Pow(2, part.Length - i) % 11;
+                    var weight = (int)Math.Pow(2, part.Length - i - 1) % 11;
                     chs += num * weight;
                 }
                 return chs % 11 == 0;
