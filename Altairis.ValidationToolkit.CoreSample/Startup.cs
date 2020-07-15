@@ -10,6 +10,9 @@ namespace Altairis.ValidationToolkit.CoreSample {
 
             // Uncomment the following line to turn off the bank code validation globally
             // services.AddSingleton<IBankCodeValidator>(new EmptyBankCodeValidator());
+
+            // Uncomment the following line to use online bank code validation
+            // services.AddSingleton<IBankCodeValidator>(new OnlineBankCodeValidator());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
