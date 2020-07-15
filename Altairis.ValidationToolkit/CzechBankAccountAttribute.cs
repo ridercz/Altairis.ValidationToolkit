@@ -47,7 +47,7 @@ namespace Altairis.ValidationToolkit {
         }
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext) {
-            this.bankCodeValidator = (IBankCodeValidator)validationContext.GetService(typeof(IBankCodeValidator)) ?? new StaticBankCodeValidator();
+            this.bankCodeValidator = (IBankCodeValidator)validationContext.GetService(typeof(IBankCodeValidator)) ?? this.bankCodeValidator;
             return this.IsValid(value)
                 ? ValidationResult.Success
                 : new ValidationResult(this.FormatErrorMessage(validationContext.MemberName), new string[] { validationContext.MemberName });
