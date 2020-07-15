@@ -64,6 +64,13 @@
                 @Html.EditorFor(x => x.RequiredEmptyWhenChecked)
             </p>
         </fieldset>
+        <fieldset>
+            <legend>CzechBankAccountAttribute</legend>
+            <p>
+                @Html.LabelFor(x => x.BankAccount)<br />
+                @Html.EditorFor(x => x.BankAccount)
+            </p>
+        </fieldset>
         @Html.ValidationSummary();
         <input type="submit" value="Submit" />
     }

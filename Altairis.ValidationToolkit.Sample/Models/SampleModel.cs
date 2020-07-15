@@ -51,5 +51,8 @@ namespace Altairis.ValidationToolkit.Sample.Models {
         [RequiredEmptyWhen("CheckBox", true)]
         public string RequiredEmptyWhenChecked { get; set; }
 
+        [CzechBankAccount]
+        public string BankAccount { get; set; }
+
     }
 }
