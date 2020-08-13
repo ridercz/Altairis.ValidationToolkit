@@ -18,6 +18,7 @@ namespace Altairis.ValidationToolkit {
 
         public CzechBankAccountAttribute(string errorMessage) : base(errorMessage) { }
 
+        [Obsolete("Use EmptyBankCodeValidator instead.")]
         public bool IgnoreBankCode { get; set; } = false;
 
         public override bool IsValid(object value) {

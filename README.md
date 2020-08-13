@@ -17,9 +17,21 @@ The best way to install this library is to use the `Altairis.ValidationToolkit` 
 Validates if given string is valid Czech bank account number. Expects value to be in form `prefix-number/bankcode`, where the `prefix-` part is optional.
 
 * `[CzechBankAccount]` - standard usage
-* `[CzechBankAccount(IgnoreBankCode = true)]` - will allow any four decimal number as a bank code. See note below.
+* <sup>obsolete</sup> `[CzechBankAccount(IgnoreBankCode = true)]` - will allow any four decimal number as a bank code. Deprecated, use `EmptyBankCodeValidator` instead.
 
-The code has embedded list of valid bank codes, taken from the Czech National Bank website. The values are fairly static, usually only the company names (which are not used) are changed, not the numbers themselves. But you can turn off validation against this list, if you wish.
+#### Validating bank codes
+
+By default, the validator uses hardcoded list of valid bank codes, taken from the Czech National Bank website. The values are fairly static, usually only the company names (which are not used) are changed, not the numbers themselves. But the validation mechanism is extensible.
+
+You can use the `OnlineBankCodeValidator`, which downloads the list of valid codes from CNB website. To do that, register the class to IoC/DI container:
+
+    services.AddSingleton<IBankCodeValidator>(new OnlineBankCodeValidator());
+
+You can also turn off the bank code validation globally by using the `EmptyBankCodeValidator`, which will validate any four digit number:
+
+    services.AddSingleton<IBankCodeValidator>(new EmptyBankCodeValidator());
+
+Additionally, you can create your own validator by implementing the `IBankCodeValidator` interface.
 
 ### [DateOffset]
 Validates if given `DateTime` falls within defined offset from current date. Useful for validating birthdates etc.
