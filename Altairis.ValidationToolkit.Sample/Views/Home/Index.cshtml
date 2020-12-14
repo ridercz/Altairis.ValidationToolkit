@@ -71,6 +71,13 @@
                 @Html.EditorFor(x => x.BankAccount)
             </p>
         </fieldset>
+        <fieldset>
+            <legend>ColorAttribute</legend>
+            <p>
+                @Html.LabelFor(x => x.Color)<br />
+                @Html.EditorFor(x => x.Color)
+            </p>
+        </fieldset>
         @Html.ValidationSummary();
         <input type="submit" value="Submit" />
     }

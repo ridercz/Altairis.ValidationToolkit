@@ -54,5 +54,8 @@ namespace Altairis.ValidationToolkit.Sample.Models {
         [CzechBankAccount]
         public string BankAccount { get; set; }
 
+        [Color]
+        public string Color { get; set; }
+
     }
 }
