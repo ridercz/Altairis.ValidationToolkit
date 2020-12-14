@@ -7,16 +7,16 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Altairis.ValidationToolkit {
-    public sealed class CzechBankAccountAttribute : ValidationAttribute {
+
+    [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter, AllowMultiple = false)]
+    public sealed class CzechBankAccountAttribute : DataTypeAttribute {
 
         private const string AccountNumberFormat = @"^(\d{1,6}-)?\d{1,10}/\d{4}$";
         private IBankCodeValidator bankCodeValidator = new StaticBankCodeValidator();
 
-        public CzechBankAccountAttribute() : base("The field {0} must be a valid Czech bank account number.") { }
-
-        public CzechBankAccountAttribute(Func<string> errorMessageAccessor) : base(errorMessageAccessor) { }
-
-        public CzechBankAccountAttribute(string errorMessage) : base(errorMessage) { }
+        public CzechBankAccountAttribute() : base("CzechBankAccount") {
+            this.ErrorMessage = "The field {0} must be a valid Czech bank account number.";
+        }
 
         [Obsolete("Use EmptyBankCodeValidator instead.")]
         public bool IgnoreBankCode { get; set; } = false;

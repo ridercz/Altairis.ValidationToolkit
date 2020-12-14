@@ -4,16 +4,11 @@ using System.Text.RegularExpressions;
 
 namespace Altairis.ValidationToolkit {
 
-    [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
-    public sealed class IcoAttribute : ValidationAttribute {
+    [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter, AllowMultiple = false)]
+    public sealed class IcoAttribute : DataTypeAttribute {
 
-        public IcoAttribute()
-            : this("The field {0} must be valid IČO (identification number of person).") { }
-
-        public IcoAttribute(Func<string> errorMessageAccessor) : base(errorMessageAccessor) {
-        }
-
-        public IcoAttribute(string errorMessage) : base(errorMessage) {
+        public IcoAttribute() : base("Ico") {
+            this.ErrorMessage = "The field {0} must be valid IČO (Czech identification number of person).";
         }
 
         public override bool IsValid(object value) {
