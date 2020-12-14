@@ -21,6 +21,7 @@ namespace Altairis.ValidationToolkit {
         public int MaximumYear { get; private set; }
 
         public int MinimumYear { get; private set; }
+
         public override string FormatErrorMessage(string name) => string.Format(this.ErrorMessageString, name, this.MinimumYear, this.MaximumYear);
 
         public override bool IsValid(object value) {
