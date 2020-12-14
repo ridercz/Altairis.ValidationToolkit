@@ -22,8 +22,8 @@ namespace Altairis.ValidationToolkit {
         public bool IgnoreBankCode { get; set; } = false;
 
         public override bool IsValid(object value) {
-            var s = value as string;
-            if (string.IsNullOrEmpty(s)) return true;                   // Empty value is always valid
+            if (value == null) return true;                             // Null values are valid
+            if (!(value is string s)) return false;                     // Non-string values are invalid
             if (!Regex.IsMatch(s, AccountNumberFormat)) return false;   // Unexpected format
 
             // Split account numer to parts

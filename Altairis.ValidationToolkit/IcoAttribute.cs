@@ -12,9 +12,8 @@ namespace Altairis.ValidationToolkit {
         }
 
         public override bool IsValid(object value) {
-            // Empty values are valid - use RequiredAttribute instead
-            var s = value as string;
-            if (string.IsNullOrWhiteSpace(s)) return true;
+            if (value == null) return true;         // Null values are valid
+            if (!(value is string s)) return false; // Non-string values are invalid
 
             // IČO is 8 digits, pad with zeroes when not
             if (!Regex.IsMatch(s, "^[0-9]{1,8}$")) return false;
