@@ -12,7 +12,17 @@ The best way to install this library is to use the `Altairis.ValidationToolkit` 
 
 ## Validation attributes included
 
+### [ColorAttribute]
+
+_Editor template name: `Color`._
+
+Validates if given string is a valid HTML color in the `#RRGGBB` syntax.
+
+* `[Color]` - string must ve valid HTML color (no options are available)
+
 ### [CzechBankAccount]
+
+_Editor template name: `CzechBankAccount`._
 
 Validates if given string is valid Czech bank account number. Expects value to be in form `prefix-number/bankcode`, where the `prefix-` part is optional.
 
@@ -34,6 +44,7 @@ You can also turn off the bank code validation globally by using the `EmptyBankC
 Additionally, you can create your own validator by implementing the `IBankCodeValidator` interface.
 
 ### [DateOffset]
+
 Validates if given `DateTime` falls within defined offset from current date. Useful for validating birthdates etc.
 
 * `[DateOffset(-120, 0)]` - date must be between 120 years ago and `DateTime.Today`.
@@ -42,23 +53,29 @@ Validates if given `DateTime` falls within defined offset from current date. Use
 *Please note:* By default, the attribute ignores time of day when comparing. If you want to take it in account, set `CompareTime` to `true` and modify error message formatting to show the time of day as well.
 
 ### [GreaterThan]
+
 Validates if given value is greater than value of some other property.
 
 * `[GreaterThan("Minimum")]` - value of this property must be greater than value of property `Minimum`.
 * `[GreaterThan("Minimum", AllowEqual = true)]` - value of this property must be greater or equal to value of property `Minimum`.
 
 ### [Ico]
+
+_Editor template name: `Ico`._
+
 Validates if given string is valid IČO (*identification number of person*, the state-issued identifier used in Czech Republic).
 
 * `[Ico]` - string must be valid IČO (no options are available)
 
 ### [YearOffset]
+
 Validates if given year (expressed as `int`) falls within defined offset from current year. Useful for validating birthdates etc.
 
 * `[YearOffset(-120, 0)]` - year must be between from 120 years ago and current year.
 * `[YearOffset(0, 10)]` - year must be in next 10 years from now.
 
 ### [RequiredWhen]
+
 Makes property required when some other property has specific value.
 
 * `[RequiredWhen("OtherProperty", "value")]` - property is required when `OtherProperty == "value"`.
@@ -67,6 +84,7 @@ Makes property required when some other property has specific value.
 *Please note:* The default error message does not mention the master condition (it says *Field {0} is required*, not *Field {0} is required when some conditions are met*). It's recommended to override the message to be more specific to your model.
 
 ### [RequiredEmptyWhen]
+
 Complements the `RequiredWhen` attribute. Forces property to have `null` value when other property has specific value.
 
 * `[RequiredEmptyWhen("OtherProperty", "value")]` - property is required to be empty when `OtherProperty == "value"`.
