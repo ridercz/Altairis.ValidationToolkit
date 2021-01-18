@@ -57,5 +57,8 @@ namespace Altairis.ValidationToolkit.Sample.Models {
         [Color]
         public string Color { get; set; }
 
+        [RodneCislo]
+        public string RodneCislo { get; set; }
+
     }
 }

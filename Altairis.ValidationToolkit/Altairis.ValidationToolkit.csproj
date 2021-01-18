@@ -3,12 +3,12 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>2.8.0</Version>
+    <Version>2.9.0</Version>
     <Authors>Michal Altair Valášek - Altairis</Authors>
     <Company>Altairis</Company>
     <Product>Altairis Validation Toolkit</Product>
     <Description>Set of various interesting .NET validation attributes. Works with .NET Standard 2.0.</Description>
-    <Copyright>Copyright (c) Michal A. Valášek - Altairis, 2014-2020</Copyright>
+    <Copyright>Copyright (c) Michal A. Valášek - Altairis, 2014-2021</Copyright>
     <PackageLicenseUrl></PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/ridercz/Altairis.ValidationToolkit</PackageProjectUrl>
     <PackageIconUrl></PackageIconUrl>

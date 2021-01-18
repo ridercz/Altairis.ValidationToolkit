@@ -78,6 +78,13 @@
                 @Html.EditorFor(x => x.Color)
             </p>
         </fieldset>
+        <fieldset>
+            <legend>RodneCisloAttribute</legend>
+            <p>
+                @Html.LabelFor(x => x.RodneCislo)<br />
+                @Html.EditorFor(x => x.RodneCislo)
+            </p>
+        </fieldset>
         @Html.ValidationSummary();
         <input type="submit" value="Submit" />
     }
