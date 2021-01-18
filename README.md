@@ -92,6 +92,31 @@ Complements the `RequiredWhen` attribute. Forces property to have `null` value w
 
 *Please note:* The default error message does not mention the master condition (it says *Field {0} is required to be empty*, not *Field {0} is required to be empty when some conditions are met*). It's recommended to override the message to be more specific to your model.
 
+### [RodneCislo]
+
+_Editor template name: `RodneCislo`.__
+
+Validates if a given string is valid rodné číslo ("birth number" the personal identifier of a physical person used in Czech republic). The validation algorithm is derived from § 13 of the Czech law no. 133/2000.
+
+* `[RodneCislo]` - validates the correct format (no options are available).
+
+#### Parsing
+
+There is also class `Altairis.ValidationToolkit.LogicalTypes.RodneCislo` which represents the logical data type.
+
+Use the `Parse` and `TryParse` methods to parse strings as rodné číslo. All characters except decimal numbers are ignored. Instance has the following read-only properties:
+
+* `BirthDate` - date of birth of the person.
+* `SequenceNumber` - number discriminating persons born on the same day.
+* `Gender` - male or female.
+* `IsExtraSequence` - determines where second set of sequence numbers was used.
+
+Instance has the following methods:
+
+* `ToString()` - returns value with `/` separator;
+* `ToString(useSeparator: false)` - returns value without the separator.
+
+
 ## License
 
 This library is open source software licensed under terms of the [MIT License](LICENSE.md).
