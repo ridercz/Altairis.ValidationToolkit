@@ -16,7 +16,7 @@ namespace Altairis.ValidationToolkit.LogicalTypes {
         public override string ToString() => this.ToString(true);
 
         public string ToString(bool useSeparator) => useSeparator
-                ? string.Join("/", this.rawValue.Substring(0, 6), this.rawValue.Substring(7))
+                ? string.Join("/", this.rawValue.Substring(0, 6), this.rawValue.Substring(6))
                 : this.rawValue;
 
         public static RodneCislo Parse(string s) {
