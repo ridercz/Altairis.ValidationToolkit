@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Altairis.ValidationToolkit {
 
-    [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
+    [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter, AllowMultiple = false)]
     public sealed class GreaterThanAttribute : ValidationAttribute {
 
         public GreaterThanAttribute(string otherPropertyName)

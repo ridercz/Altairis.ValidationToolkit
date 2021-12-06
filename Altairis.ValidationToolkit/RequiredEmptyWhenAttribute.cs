@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Altairis.ValidationToolkit {
 
-    [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
+    [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter, AllowMultiple = false)]
     public sealed class RequiredEmptyWhenAttribute : ValidationAttribute {
 
         public RequiredEmptyWhenAttribute(string otherPropertyName, object otherPropertyValue, Func<string> errorMessageAccessor) : base(errorMessageAccessor) {
