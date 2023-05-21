@@ -7,7 +7,7 @@ namespace Altairis.ValidationToolkit {
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter, AllowMultiple = false)]
     public sealed class CzechBankAccountAttribute : DataTypeAttribute {
 
-        private const string AccountNumberFormat = @"^(\d{1,6}-)?\d{1,10}/\d{4}$";
+        private const string AccountNumberFormat = @"^(?:(?<prefix>\d{1,6})-)?(?<number>\d{2,10})/(?<code>\d{4})$";
         private IBankCodeValidator bankCodeValidator = new StaticBankCodeValidator();
 
         public CzechBankAccountAttribute() : base("CzechBankAccount") {
@@ -20,17 +20,19 @@ namespace Altairis.ValidationToolkit {
         public override bool IsValid(object value) {
             if (value == null) return true;                             // Null values are valid
             if (!(value is string s)) return false;                     // Non-string values are invalid
-            if (!Regex.IsMatch(s, AccountNumberFormat)) return false;   // Unexpected format
+            
+            var match = Regex.Match(s, AccountNumberFormat);
+            if (!match.Success) return false;                           // Unexpected format
 
             // Split account numer to parts
-            var sd = s.Replace('-', '/').Split('/');
-            var prefix = sd.Length == 2 ? string.Empty : sd[0];
-            var number = sd[sd.Length - 2];
-            var bankCode = sd[sd.Length - 1];
+            var prefix = match.Groups["prefix"].Value;
+            var number = match.Groups["number"].Value;
+            var bankCode = match.Groups["code"].Value;
 
             // Validate parts
-            bool validatePart(string part) {
-                if (string.IsNullOrEmpty(part)) return true;
+            bool validatePart(string part, bool isPrefix) {
+                if (string.IsNullOrEmpty(part)) return isPrefix;
+                if (!isPrefix && int.Parse(part) == 0) return false;
 
                 var chs = 0;
                 for (var i = 0; i < part.Length; i++) {
@@ -40,7 +42,9 @@ namespace Altairis.ValidationToolkit {
                 }
                 return chs % 11 == 0;
             }
-            return (this.IgnoreBankCode || this.bankCodeValidator.Validate(bankCode)) && validatePart(prefix) && validatePart(number);
+            return (this.IgnoreBankCode || this.bankCodeValidator.Validate(bankCode)) && 
+                   validatePart(prefix, isPrefix:true) && 
+                   validatePart(number, isPrefix: false);
         }
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext) {
