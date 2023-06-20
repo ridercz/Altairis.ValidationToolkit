@@ -40,7 +40,9 @@ namespace Altairis.ValidationToolkit {
                 }
                 return chs % 11 == 0;
             }
+#pragma warning disable CS0618 // Type or member is obsolete
             return (this.IgnoreBankCode || this.bankCodeValidator.Validate(bankCode)) && validatePart(prefix) && validatePart(number);
+#pragma warning restore CS0618 // Type or member is obsolete
         }
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext) {
