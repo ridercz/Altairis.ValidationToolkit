@@ -1,21 +1,23 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;net7</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Version>2.9.2</Version>
     <Authors>Michal Altair Valášek - Altairis</Authors>
     <Company>Altairis</Company>
     <Product>Altairis Validation Toolkit</Product>
     <Description>Set of various interesting .NET validation attributes. Works with .NET Standard 2.0.</Description>
-    <Copyright>Copyright (c) Michal A. Valášek - Altairis, 2014-2021</Copyright>
-    <PackageLicenseUrl></PackageLicenseUrl>
+    <Copyright>Copyright (c) Michal A. Valášek - Altairis, 2014-2023</Copyright>
     <PackageProjectUrl>https://github.com/ridercz/Altairis.ValidationToolkit</PackageProjectUrl>
-    <PackageIconUrl></PackageIconUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/ridercz/Altairis.ValidationToolkit.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageIcon>NuGet-64x64.png</PackageIcon>
+    <Title>Altairis Validation Toolkit</Title>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <IncludeSymbols>True</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
 
   <ItemGroup>
@@ -26,6 +28,10 @@
     <None Include="..\NuGet-64x64.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
+    </None>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
     </None>
   </ItemGroup>
 

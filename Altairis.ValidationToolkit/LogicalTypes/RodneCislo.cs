@@ -1,8 +1,15 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
 
 namespace Altairis.ValidationToolkit.LogicalTypes {
+
+#if NET7_0_OR_GREATER
+    public class RodneCislo : IParsable<RodneCislo> {
+#else
     public class RodneCislo {
+#endif
+
         private string rawValue;
 
         public DateTime BirthDate { get; private set; }
@@ -84,6 +91,14 @@ namespace Altairis.ValidationToolkit.LogicalTypes {
                 return false;
             }
         }
+
+#if NET7_0_OR_GREATER
+
+        public static RodneCislo Parse(string s, IFormatProvider provider) => Parse(s);
+        
+        public static bool TryParse([NotNullWhen(true)] string s, IFormatProvider provider, [MaybeNullWhen(false)] out RodneCislo result) => TryParse(s, out result);
+
+#endif
 
     }
 
