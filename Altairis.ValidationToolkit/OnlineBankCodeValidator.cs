@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Text.RegularExpressions;
 
 namespace Altairis.ValidationToolkit {
@@ -34,8 +35,9 @@ namespace Altairis.ValidationToolkit {
             // Download list from ČNB site
             string csv;
             try {
-                using (var wc = new TimeoutWebClient(this.options.Timeout)) {
-                    csv = wc.DownloadString(this.options.ListUrl);
+                using (var http = new HttpClient()) {
+                    http.Timeout = this.options.Timeout;
+                    csv = http.GetStringAsync(this.options.ListUrl).Result;
                 }
             } catch (WebException wex) when (wex.Status == WebExceptionStatus.Timeout && !this.options.ThrowExceptionOnTimeout) {
                 return;
@@ -54,21 +56,6 @@ namespace Altairis.ValidationToolkit {
 
             // Set last update time to now
             this.lastUpdate = DateTime.Now;
-        }
-
-        private class TimeoutWebClient : WebClient {
-            private readonly TimeSpan timeout;
-
-            public TimeoutWebClient(TimeSpan timeout) {
-                if (timeout <= TimeSpan.Zero) throw new ArgumentOutOfRangeException(nameof(timeout));
-                this.timeout = timeout;
-            }
-
-            protected override WebRequest GetWebRequest(Uri address) {
-                var rq = base.GetWebRequest(address);
-                rq.Timeout = (int)this.timeout.TotalMilliseconds;
-                return rq;
-            }
         }
 
     }
