@@ -38,27 +38,27 @@ namespace Altairis.ValidationToolkit.Sample.Models {
         public int? MaxOrEqualValue { get; set; }
 
         [Ico]
-        public string Ico { get; set; }
+        public string? Ico { get; set; }
 
         [Display(Name = "CheckBox value")]
         public bool CheckBox { get; set; }
 
         [Display(Name = "This value is required when checkbox is checked")]
         [RequiredWhen("CheckBox", true)]
-        public string RequiredWhenChecked { get; set; }
+        public string? RequiredWhenChecked { get; set; }
 
         [Display(Name = "This value is required to be empty when checkbox is checked")]
         [RequiredEmptyWhen("CheckBox", true)]
-        public string RequiredEmptyWhenChecked { get; set; }
+        public string? RequiredEmptyWhenChecked { get; set; }
 
         [CzechBankAccount]
-        public string BankAccount { get; set; }
+        public string? BankAccount { get; set; }
 
         [Color]
-        public string Color { get; set; }
+        public string? Color { get; set; }
 
         [RodneCislo]
-        public string RodneCislo { get; set; }
+        public string? RodneCislo { get; set; }
 
     }
 }

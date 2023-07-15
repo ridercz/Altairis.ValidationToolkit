@@ -1,13 +1,16 @@
-﻿using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Hosting;
+﻿using Altairis.ValidationToolkit;
 
-namespace Altairis.ValidationToolkit.CoreSample {
-    public class Program {
-        public static void Main(string[] args) => BuildWebHost(args).Run();
+var builder = WebApplication.CreateBuilder(args);
 
-        public static IWebHost BuildWebHost(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>()
-                .Build();
-    }
-}
+builder.Services.AddControllersWithViews();
+
+// Uncomment the following line to turn off the bank code validation globally
+// builder.Services.AddSingleton<IBankCodeValidator>(new EmptyBankCodeValidator());
+
+// Uncomment the following line to use online bank code validation
+// builder.Services.AddSingleton<IBankCodeValidator>(new OnlineBankCodeValidator());
+
+var app = builder.Build();
+app.MapDefaultControllerRoute();
+
+app.Run();
