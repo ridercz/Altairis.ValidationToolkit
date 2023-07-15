@@ -5,12 +5,14 @@ using System.Text.RegularExpressions;
 namespace Altairis.ValidationToolkit.LogicalTypes {
 
 #if NET7_0_OR_GREATER
-    public class RodneCislo : IParsable<RodneCislo> {
+    public class RodneCislo : IParsable<RodneCislo>, IEquatable<RodneCislo> {
 #else
-    public class RodneCislo {
+    public class RodneCislo : IEquatable<RodneCislo> {
 #endif
 
         private string rawValue;
+
+        // Properties
 
         public DateTime BirthDate { get; private set; }
 
@@ -20,11 +22,15 @@ namespace Altairis.ValidationToolkit.LogicalTypes {
 
         public bool IsExtraSequence { get; private set; }
 
+        // String conversion methods
+
         public override string ToString() => this.ToString(true);
 
         public string ToString(bool useSeparator) => useSeparator
                 ? string.Join("/", this.rawValue.Substring(0, 6), this.rawValue.Substring(6))
                 : this.rawValue;
+
+        // Parse methods
 
         public static RodneCislo Parse(string s) {
             if (s == null) throw new ArgumentNullException(nameof(s));
@@ -81,6 +87,8 @@ namespace Altairis.ValidationToolkit.LogicalTypes {
             // Checksum
             return year >= 1954 && long.Parse(s) % 11 > 0 ? throw new FormatException("Value contains invalid checksum") : r;
         }
+        
+        public static RodneCislo Parse(string s, IFormatProvider provider) => Parse(s);
 
         public static bool TryParse(string s, out RodneCislo result) {
             try {
@@ -93,12 +101,24 @@ namespace Altairis.ValidationToolkit.LogicalTypes {
         }
 
 #if NET7_0_OR_GREATER
-
-        public static RodneCislo Parse(string s, IFormatProvider provider) => Parse(s);
-        
+                
         public static bool TryParse([NotNullWhen(true)] string s, IFormatProvider provider, [MaybeNullWhen(false)] out RodneCislo result) => TryParse(s, out result);
 
 #endif
+
+        // Implement IEquatable<RodneCislo>
+
+        public bool Equals(RodneCislo other) => other != null && this.rawValue == other.rawValue;
+
+        public override bool Equals(object obj) => this.Equals(obj as RodneCislo);
+
+        public override int GetHashCode() => this.rawValue.GetHashCode();
+
+        // Operators
+
+        public static bool operator ==(RodneCislo left, RodneCislo right) => left?.Equals(right) ?? right is null;
+
+        public static bool operator !=(RodneCislo left, RodneCislo right) => !(left == right);
 
     }
 
