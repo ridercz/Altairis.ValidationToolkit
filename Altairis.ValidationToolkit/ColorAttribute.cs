@@ -11,6 +11,7 @@ namespace Altairis.ValidationToolkit {
             this.ErrorMessage = "Field {0} must be valid HTML color (#RRGGBB).";
         }
 
-        public override bool IsValid(object value) => value == null || (value is string s ? Regex.IsMatch(s, @"^\#[0-9A-Fa-f]{6}") : false);
+        public override bool IsValid(object value) => value == null || (value is string s && Regex.IsMatch(s, @"^\#[0-9A-Fa-f]{6}"));
+
     }
 }
