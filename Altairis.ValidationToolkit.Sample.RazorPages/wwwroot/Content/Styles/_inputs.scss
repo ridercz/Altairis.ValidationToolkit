@@ -7,6 +7,15 @@
     border-radius: 5px;
 }
 
+@mixin CodeTextarea {
+    font-family: 'Cascadia Code', Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    font-size: 18px;
+    padding: .5ex;
+    width: 100%;
+    border: 1px solid #000;
+    border-radius: 5px;
+}
+
 input {
     @include TextBox;
 
@@ -21,21 +30,13 @@ input {
         padding: 1ex 3em;
     }
 
-    &.short {
-        max-width: 10em;
-    }
-
-    &[type=date] {
+    &.ico, &.postal-code, &.rodne-cislo, &[type=date], &[type=color] {
         max-width: 10em;
     }
 
     &[type=number] {
         max-width: 10em;
         text-align: right;
-    }
-
-    &[type=color] {
-        max-width: 10em;
     }
 
     &.hasextra {
@@ -57,13 +58,13 @@ textarea {
     height: 5em;
     resize: vertical;
 
+    &.html {
+        @include CodeTextarea;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 512' style='fill:%2523ccc'%3E%3Cpath d='M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3L562.7 256l-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z'/%3E%3C/svg%3E");
+    }
+
     &.markdown {
+        @include CodeTextarea;
         background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 512' style='fill:%23ccc'%3E%3Cpath d='M593.8 59.1H46.2C20.7 59.1 0 79.8 0 105.2v301.5c0 25.5 20.7 46.2 46.2 46.2h547.7c25.5 0 46.2-20.7 46.1-46.1V105.2c0-25.4-20.7-46.1-46.2-46.1zM338.5 360.6H277v-120l-61.5 76.9-61.5-76.9v120H92.3V151.4h61.5l61.5 76.9 61.5-76.9h61.5v209.2zm135.3 3.1L381.5 256H443V151.4h61.5V256H566z'/%3E%3C/svg%3E");
-        background-position: right top;
-        background-origin: content-box;
-        background-repeat: no-repeat;
-        background-size: 15px;
-        background-size: 25px;
-        font-family: 'Cascadia Code', Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
     }
 }
