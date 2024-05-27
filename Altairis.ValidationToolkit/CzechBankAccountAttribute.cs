@@ -2,12 +2,11 @@
 using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
 
-namespace Altairis.ValidationToolkit; 
+namespace Altairis.ValidationToolkit;
 
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter, AllowMultiple = false)]
 public sealed partial class CzechBankAccountAttribute : DataTypeAttribute {
 
-    private const string AccountNumberFormat = @"^(\d{1,6}-)?\d{1,10}/\d{4}$";
     private IBankCodeValidator bankCodeValidator = new StaticBankCodeValidator();
 
     public CzechBankAccountAttribute() : base("CzechBankAccount") {
@@ -15,19 +14,21 @@ public sealed partial class CzechBankAccountAttribute : DataTypeAttribute {
     }
 
     public override bool IsValid(object value) {
-        if (value == null) return true;                             // Null values are valid
-        if (value is not string s) return false;                    // Non-string values are invalid
-        if (!AccountNumberFormatRegex().IsMatch(s)) return false;   // Unexpected format
+        if (value == null) return true;          // Null values are valid
+        if (value is not string s) return false; // Non-string values are invalid
+
+        var match = BankAccountNumberFormat().Match(s);
+        if (!match.Success) return false; // Unexpected format
 
         // Split account numer to parts
-        var sd = s.Replace('-', '/').Split('/');
-        var prefix = sd.Length == 2 ? string.Empty : sd[0];
-        var number = sd[^2];
-        var bankCode = sd[^1];
+        var prefix = match.Groups["prefix"].Value;
+        var number = match.Groups["number"].Value;
+        var bankCode = match.Groups["code"].Value;
 
         // Validate parts
-        static bool validatePart(string part) {
-            if (string.IsNullOrEmpty(part)) return true;
+        static bool validatePart(string part, bool isPrefix) {
+            if (string.IsNullOrEmpty(part)) return isPrefix;
+            if (!isPrefix && int.Parse(part) == 0) return false;
 
             var chs = 0;
             for (var i = 0; i < part.Length; i++) {
@@ -37,16 +38,16 @@ public sealed partial class CzechBankAccountAttribute : DataTypeAttribute {
             }
             return chs % 11 == 0;
         }
-        return validatePart(prefix) && validatePart(number) && this.bankCodeValidator.Validate(bankCode);
+        return validatePart(prefix, isPrefix: true) && validatePart(number, isPrefix: false) && this.bankCodeValidator.Validate(bankCode);
     }
 
     protected override ValidationResult IsValid(object value, ValidationContext validationContext) {
         this.bankCodeValidator = (IBankCodeValidator)validationContext.GetService(typeof(IBankCodeValidator)) ?? this.bankCodeValidator;
         return this.IsValid(value)
             ? ValidationResult.Success
-            : new ValidationResult(this.FormatErrorMessage(validationContext.MemberName), [validationContext.MemberName]);
+            : new ValidationResult(this.FormatErrorMessage(validationContext.MemberName), new string[] { validationContext.MemberName });
     }
 
-    [GeneratedRegex(AccountNumberFormat)]
-    private static partial Regex AccountNumberFormatRegex();
+    [GeneratedRegex(@"^(?:(?<prefix>\d{1,6})-)?(?<number>\d{2,10})/(?<code>\d{4})$")]
+    private static partial Regex BankAccountNumberFormat();
 }
