@@ -2,9 +2,10 @@
 using System.ComponentModel.DataAnnotations;
 
 namespace Altairis.ValidationToolkit.Sample.Mvc.Models;
-public class SampleModel {
 
-    public static readonly SampleModel SampleData = new() {
+public class ValidationDemoModel {
+
+    public static readonly ValidationDemoModel SampleData = new() {
         DateOfBirth = DateTime.Today.AddDays(10),
         NextMonthDate = DateTime.Today.AddDays(-1),
         YearOfBirth = DateTime.Today.Year + 1,

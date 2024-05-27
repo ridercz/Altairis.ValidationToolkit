@@ -1,0 +1,142 @@
+﻿html {
+  background-color: #030;
+  color: #fff;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+  font-size: 18px;
+  padding: 1em;
+}
+
+body {
+  background-color: #fff;
+  color: #333;
+  margin: 0 auto;
+  padding: 1em 2em;
+  max-width: 800px;
+  border-radius: 20px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+h1 {
+  color: #090;
+}
+
+form footer {
+  margin-top: 1em;
+}
+
+div.editor-label {
+  margin-top: 1em;
+  margin-bottom: 0.5ex;
+}
+div.editor-label::after {
+  content: ":";
+}
+
+div.editor-field-checkbox {
+  margin-top: 1em;
+}
+
+div.editor-complex-field {
+  border: 1px solid #090;
+  border-radius: 5px;
+  padding: 0 1em 1em 1em;
+}
+
+details.editor-group {
+  border: 1px solid #090;
+  border-radius: 5px;
+  padding: 1em 1em 1em;
+  margin-top: 1em;
+}
+details.editor-group summary {
+  color: #090;
+  cursor: pointer;
+}
+
+input {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+  font-size: 18px;
+  padding: 0.5ex;
+  width: 100%;
+  border: 1px solid #000;
+  border-radius: 5px;
+}
+input[type=checkbox] {
+  width: 1.25em;
+  height: 1.25em;
+  vertical-align: text-bottom;
+}
+input[type=submit] {
+  width: auto;
+  padding: 1ex 3em;
+}
+input.short {
+  max-width: 10em;
+}
+input[type=date] {
+  max-width: 10em;
+}
+input[type=number] {
+  max-width: 10em;
+  text-align: right;
+}
+input[type=color] {
+  max-width: 10em;
+}
+input.hasextra {
+  width: calc(100% - 4em);
+}
+input.isextra {
+  float: right;
+  width: 3em;
+}
+
+select {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+  font-size: 18px;
+  padding: 0.5ex;
+  width: 100%;
+  border: 1px solid #000;
+  border-radius: 5px;
+}
+
+textarea {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+  font-size: 18px;
+  padding: 0.5ex;
+  width: 100%;
+  border: 1px solid #000;
+  border-radius: 5px;
+  height: 5em;
+  resize: vertical;
+}
+textarea.markdown {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 512' style='fill:%23ccc'%3E%3Cpath d='M593.8 59.1H46.2C20.7 59.1 0 79.8 0 105.2v301.5c0 25.5 20.7 46.2 46.2 46.2h547.7c25.5 0 46.2-20.7 46.1-46.1V105.2c0-25.4-20.7-46.1-46.2-46.1zM338.5 360.6H277v-120l-61.5 76.9-61.5-76.9v120H92.3V151.4h61.5l61.5 76.9 61.5-76.9h61.5v209.2zm135.3 3.1L381.5 256H443V151.4h61.5V256H566z'/%3E%3C/svg%3E");
+  background-position: right top;
+  background-origin: content-box;
+  background-repeat: no-repeat;
+  background-size: 15px;
+  background-size: 25px;
+  font-family: "Cascadia Code", Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+}
+
+.input-validation-error {
+  border: 1px solid #c00;
+}
+
+span.field-validation-error {
+  display: block;
+  margin-top: 0.5ex;
+  color: #c00;
+}
+
+div.validation-summary-valid {
+  display: none;
+}
+
+div.validation-summary-errors {
+  color: #c00;
+}

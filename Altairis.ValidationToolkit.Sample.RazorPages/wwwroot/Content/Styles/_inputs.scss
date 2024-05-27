@@ -1,0 +1,69 @@
+@mixin TextBox {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 18px;
+    padding: .5ex;
+    width: 100%;
+    border: 1px solid #000;
+    border-radius: 5px;
+}
+
+input {
+    @include TextBox;
+
+    &[type=checkbox] {
+        width: 1.25em;
+        height: 1.25em;
+        vertical-align: text-bottom;
+    }
+
+    &[type=submit] {
+        width: auto;
+        padding: 1ex 3em;
+    }
+
+    &.short {
+        max-width: 10em;
+    }
+
+    &[type=date] {
+        max-width: 10em;
+    }
+
+    &[type=number] {
+        max-width: 10em;
+        text-align: right;
+    }
+
+    &[type=color] {
+        max-width: 10em;
+    }
+
+    &.hasextra {
+        width: calc(100% - 4em);
+    }
+
+    &.isextra {
+        float: right;
+        width: 3em;
+    }
+}
+
+select {
+    @include TextBox;
+}
+
+textarea {
+    @include TextBox;
+    height: 5em;
+    resize: vertical;
+
+    &.markdown {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 512' style='fill:%23ccc'%3E%3Cpath d='M593.8 59.1H46.2C20.7 59.1 0 79.8 0 105.2v301.5c0 25.5 20.7 46.2 46.2 46.2h547.7c25.5 0 46.2-20.7 46.1-46.1V105.2c0-25.4-20.7-46.1-46.2-46.1zM338.5 360.6H277v-120l-61.5 76.9-61.5-76.9v120H92.3V151.4h61.5l61.5 76.9 61.5-76.9h61.5v209.2zm135.3 3.1L381.5 256H443V151.4h61.5V256H566z'/%3E%3C/svg%3E");
+        background-position: right top;
+        background-origin: content-box;
+        background-repeat: no-repeat;
+        background-size: 15px;
+        background-size: 25px;
+        font-family: 'Cascadia Code', Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    }
+}

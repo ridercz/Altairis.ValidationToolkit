@@ -1,0 +1,74 @@
+﻿@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Mvc.ModelBinding
+@using System.ComponentModel.DataAnnotations
+@{
+    // Set layout to empty to avoid conflict with parent layout
+    this.Layout = string.Empty;
+
+    if (ViewData.TemplateInfo.TemplateDepth == 1) {
+        // This is the top-level object template
+        RenderGroupedProperties(ViewData.ModelMetadata.Properties);
+    } else {
+        // This is a subobject template, so encapsulate it in a fieldset
+        <div class="editor-complex-field">
+            @{
+                RenderGroupedProperties(ViewData.ModelMetadata.Properties);
+            }
+        </div>
+    }
+
+    void RenderGroupedProperties(ModelPropertyCollection properties) {
+        var groupedProperties = from mp in properties
+                                where mp.ShowForEdit
+                                orderby mp.Order
+                                let p = mp.ContainerType?.GetProperty(mp.PropertyName ?? string.Empty)
+                                let a = p.GetCustomAttributes(true).OfType<DisplayAttribute>().FirstOrDefault()
+                                group p by a?.GroupName into g
+                                select new {
+                                    Name = g.Key,
+                                    PropertyNames = g.Select(x=>x.Name)
+                                };
+
+        foreach (var group in groupedProperties) {
+            var propertiesInGroup = properties.Where(p => group.PropertyNames.Contains(p.PropertyName));
+            if (string.IsNullOrEmpty(group.Name)) {
+                RenderProperties(propertiesInGroup);
+            } else {
+                <details class="editor-group">
+                    <summary>@group.Name</summary>
+                    @{
+                        RenderProperties(propertiesInGroup);
+                    }
+                </details>
+            }
+        }
+
+    }
+
+    void RenderProperties(IEnumerable<ModelMetadata> properties) {
+        foreach (var prop in properties.Where(p => p.ShowForEdit).OrderBy(p => p.Order)) {
+            if (prop.IsComplexType && !(prop.ModelType.Equals(typeof(IFormFile)) || prop.ModelType.Equals(typeof(IFormFileCollection)))) {
+                // This is a complex type, so render a subobject template
+                <div class="editor-label">@Html.Label(prop.PropertyName)</div>
+                @Html.Editor(prop.PropertyName)
+            } else if (prop.HideSurroundingHtml) {
+                // This is for a hidden input
+                @Html.Editor(prop.PropertyName)
+            } else if (prop.ModelType.Equals(typeof(System.Boolean))) {
+                // This is for checkbox inputs
+                <div class="editor-field-checkbox">
+                    @Html.Editor(prop.PropertyName) @Html.Label(prop.PropertyName)
+                    @Html.ValidationMessage(prop.PropertyName)
+                </div>
+            } else {
+                // This is for all other inputs
+                <div class="editor-label">@Html.Label(prop.PropertyName)</div>
+                <div class="editor-field">
+                    @Html.Editor(prop.PropertyName)
+                    @Html.ValidationMessage(prop.PropertyName)
+                </div>
+            }
+        }
+    }
+
+}

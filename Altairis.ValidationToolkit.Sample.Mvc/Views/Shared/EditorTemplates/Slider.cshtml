@@ -1,0 +1,39 @@
+﻿@using Altairis.ValidationToolkit
+@{
+    // Set layout to empty to avoid conflict with parent layout
+    this.Layout = string.Empty;
+
+    // Helper local function to get property attribute of given type
+    T? getPropertyAttribute<T>() where T : Attribute {
+        var propertyName = this.ViewData.ModelExplorer.Metadata.PropertyName;
+        if (propertyName == null) return null;
+        var propertyInfo = this.ViewData.ModelExplorer.Container.Model.GetType().GetProperty(propertyName);
+        return propertyInfo?.GetCustomAttributes(typeof(T), false).FirstOrDefault() as T;
+    }
+
+    // Get the slider options attribute
+    var sliderAttribute = getPropertyAttribute<SliderAttribute>();
+
+    // Set the HTML attributes for the number and range inputs
+    var numberHtmlAttributes = new {
+        type = "number",
+        min = sliderAttribute?.Min,
+        max = sliderAttribute?.Max,
+        step = sliderAttribute?.Step,
+        oninput = "this.nextElementSibling.value = this.value",
+        @class = "isextra"
+    };
+    var rangeHtmlAttributes = new {
+        type = "range",
+        min = sliderAttribute?.Min,
+        max = sliderAttribute?.Max,
+        step = sliderAttribute?.Step,
+        oninput = "this.previousElementSibling.value = this.value",
+        @class = "hasextra"
+    };
+
+    var extraFieldSuffix = sliderAttribute?.ExtraFieldSuffix ?? "Extra";
+
+}
+@Html.TextBox(extraFieldSuffix, ViewData.TemplateInfo.FormattedModelValue, numberHtmlAttributes)
+@Html.TextBox(string.Empty, ViewData.TemplateInfo.FormattedModelValue, rangeHtmlAttributes)

@@ -1,0 +1,19 @@
+﻿@page
+@model Altairis.ValidationToolkit.Sample.RazorPages.Pages.ValidationDemoModel
+<html>
+<head>
+    <title>Validation Attributes Demo</title>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/Content/Styles/Site.css" asp-append-version="true" />
+</head>
+<body>
+    <h1>Validation Attributes Demo</h1>
+    <form method="post">
+        @Html.EditorFor(m => Model.Input)
+        <footer>
+            <div asp-validation-summary="All"></div>
+            <input type="submit" value="Submit" />
+        </footer>
+    </form>
+</body>
+</html>

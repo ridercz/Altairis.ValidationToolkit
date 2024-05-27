@@ -1,0 +1,11 @@
+﻿@{
+    this.Layout = null;
+
+    var value = string.Empty;
+    if (ViewData.Model != null) {
+        var ts = (TimeSpan)ViewData.Model;
+        value = ts.ToString(@"HH\:mm");
+    }
+    ViewData["type"] = "timelocal";
+}
+<partial name="_HtmlInput.cshtml" />

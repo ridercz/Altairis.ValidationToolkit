@@ -1,0 +1,19 @@
+﻿@using Altairis.ValidationToolkit.Sample.Mvc.Models
+@model EditorTemplatesDemoModel
+<html>
+<head>
+    <title>Editor templates demo</title>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/Content/Styles/Site.css" asp-append-version="true" />
+</head>
+<body>
+    <h1>Editor templates demo</h1>
+    <form method="post">
+        @Html.EditorForModel()
+        <footer>
+            <div asp-validation-summary="All"></div>
+            <input type="submit" value="Submit" />
+        </footer>
+    </form>
+</body>
+</html>

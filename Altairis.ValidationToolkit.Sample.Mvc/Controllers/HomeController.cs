@@ -2,14 +2,21 @@
 using Microsoft.AspNetCore.Mvc;
 
 namespace Altairis.ValidationToolkit.Sample.Mvc.Controllers;
+
 public class HomeController : Controller {
 
-    public ActionResult Index() => this.View(SampleModel.SampleData);
+    public ActionResult Index() => this.View();
+
+    [HttpGet]
+    public ActionResult ValidationDemo() => this.View(ValidationDemoModel.SampleData);
 
     [HttpPost]
-    public ActionResult Index(SampleModel model) => this.ModelState.IsValid ? this.RedirectToAction("Done") : this.View(model);
+    public ActionResult ValidationDemo(ValidationDemoModel model) => this.ModelState.IsValid ? this.RedirectToAction(nameof(Index)) : this.View(model);
 
-    public ActionResult Done() => this.View();
+    [HttpGet]
+    public ActionResult EditorTemplatesDemo() => this.View(new EditorTemplatesDemoModel());
 
+    [HttpPost]
+    public ActionResult EditorTemplatesDemo(EditorTemplatesDemoModel model) => this.ModelState.IsValid ? this.RedirectToAction(nameof(Index)) : this.View(model);
 
 }

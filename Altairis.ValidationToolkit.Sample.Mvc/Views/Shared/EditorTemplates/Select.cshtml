@@ -1,0 +1,29 @@
+﻿@using Altairis.ValidationToolkit
+@{
+    this.Layout = null;
+
+    // Helper local function to get property attribute of given type
+    T? getPropertyAttribute<T>() where T : Attribute {
+        var propertyName = this.ViewData.ModelExplorer.Metadata.PropertyName;
+        if (propertyName == null) return null;
+        var propertyInfo = this.ViewData.ModelExplorer.Container.Model.GetType().GetProperty(propertyName);
+        return propertyInfo?.GetCustomAttributes(typeof(T), false).FirstOrDefault() as T;
+    }
+
+    // Get list items from model
+    var listItems = new List<SelectListItem>();
+    var model = ViewData.ModelExplorer.Container.Model;
+    if (model != null) {
+        // Get list property name from attribute or default to {PropertyName}List
+        var listPropertyName = getPropertyAttribute<SelectAttribute>()?.ListPropertyName ?? $"{this.ViewData.ModelExplorer.Metadata.Name}List";
+        // Get list property value from model
+        var listPropertyInfo = model.GetType().GetProperty(listPropertyName);
+
+        // Get list items from property value
+        if (listPropertyInfo != null) {
+            var result = listPropertyInfo.GetValue(model) as IEnumerable<SelectListItem>;
+            if (result != null) listItems.AddRange(result);
+        }
+    }
+}
+@Html.DropDownList(string.Empty, listItems)

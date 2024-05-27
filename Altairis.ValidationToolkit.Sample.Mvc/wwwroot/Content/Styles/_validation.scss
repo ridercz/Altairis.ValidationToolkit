@@ -1,0 +1,17 @@
+.input-validation-error {
+    border: 1px solid #c00;
+}
+
+span.field-validation-error {
+    display: block;
+    margin-top: .5ex;
+    color: #c00;
+}
+
+div.validation-summary-valid {
+    display: none;
+}
+
+div.validation-summary-errors {
+    color: #c00;
+}

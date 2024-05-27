@@ -4,7 +4,7 @@
 
 Set of various interesting .NET validation attributes, usable for example in ASP.NET MVC, Razor Pages, and Web Forms model binding. You can use them to decorate model and ViewModel properties.
 
-The library is compatible with .NET Standard 2.0.
+The library is compatible with .NET 8 and above. Last version to support .NET Standard 2.0 is 3.0.1.
 
 ## How to install
 
@@ -26,8 +26,7 @@ _Editor template name: `CzechBankAccount`._
 
 Validates if given string is valid Czech bank account number. Expects value to be in form `prefix-number/bankcode`, where the `prefix-` part is optional.
 
-* `[CzechBankAccount]` - standard usage
-* <sup>obsolete</sup> `[CzechBankAccount(IgnoreBankCode = true)]` - will allow any four decimal number as a bank code. Deprecated, use `EmptyBankCodeValidator` instead.
+* `[CzechBankAccount]` - standard usage (no options are available)
 
 #### Validating bank codes
 
@@ -115,7 +114,6 @@ Instance has the following methods:
 
 * `ToString()` - returns value with `/` separator;
 * `ToString(useSeparator: false)` - returns value without the separator.
-
 
 ## License
 

@@ -11,6 +11,7 @@ builder.Services.AddControllersWithViews();
 // builder.Services.AddSingleton<IBankCodeValidator>(new OnlineBankCodeValidator());
 
 var app = builder.Build();
+app.UseStaticFiles();
 app.MapDefaultControllerRoute();
 
 app.Run();

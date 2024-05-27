@@ -1,0 +1,31 @@
+div.editor-label {
+    margin-top: 1em;
+    margin-bottom: .5ex;
+
+
+    &::after {
+        content: ":";
+    }
+}
+
+div.editor-field-checkbox {
+    margin-top: 1em;
+}
+
+div.editor-complex-field {
+    border: 1px solid #090;
+    border-radius: 5px;
+    padding: 0 1em 1em 1em;
+}
+
+details.editor-group {
+    border: 1px solid #090;
+    border-radius: 5px;
+    padding: 1em 1em 1em;
+    margin-top: 1em;
+
+    summary {
+        color: #090;
+        cursor: pointer;
+    }
+}

@@ -1,0 +1,17 @@
+﻿@{
+    this.Layout = null;
+
+    // Add basic attributes
+    var htmlAttributes = new Dictionary<string, object?> {
+        { "class", ViewData["additionalCssClass"] },
+        { "type", ViewData["type"] as string },
+        { "placeholder", ViewData.ModelMetadata.Placeholder },
+    };
+
+    // Add additional attributes from ViewData
+    foreach (var item in ViewData.Where(x => x.Key.StartsWith("attrib-"))) {
+        htmlAttributes.Add(item.Key.Substring(7), item.Value);
+    }
+
+}
+@Html.TextBox(string.Empty, ViewData.TemplateInfo.FormattedModelValue, htmlAttributes)

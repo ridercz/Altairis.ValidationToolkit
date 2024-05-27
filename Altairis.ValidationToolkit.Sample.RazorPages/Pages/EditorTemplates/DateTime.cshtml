@@ -1,0 +1,14 @@
+﻿@{
+    this.Layout = null;
+
+    var value = string.Empty;
+    if (ViewData.Model != null) {
+        var dtVal = (DateTime)ViewData.Model;
+        if (dtVal > DateTime.MinValue) {
+            value = dtVal.ToString("yyyy-MM-ddTHH:mm:ss");
+        }
+    }
+    ViewData.TemplateInfo.FormattedModelValue = value;
+    ViewData["type"] = "datetime-local";
+}
+<partial name="_HtmlInput.cshtml" />
