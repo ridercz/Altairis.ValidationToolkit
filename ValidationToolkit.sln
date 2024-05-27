@@ -5,8 +5,6 @@ VisualStudioVersion = 17.9.34902.65
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Altairis.ValidationToolkit", "Altairis.ValidationToolkit\Altairis.ValidationToolkit.csproj", "{C7C3C036-A648-4230-93C4-C92798D92859}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Altairis.ValidationToolkit.CoreSample", "Altairis.ValidationToolkit.CoreSample\Altairis.ValidationToolkit.CoreSample.csproj", "{FB3FA8D3-B278-4C68-B44E-9113961410B5}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1C21111C-B77A-4D7C-A892-062C2D7EF717}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
@@ -14,6 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		LICENSE.md = LICENSE.md
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Altairis.ValidationToolkit.Sample.Mvc", "Altairis.ValidationToolkit.Sample.Mvc\Altairis.ValidationToolkit.Sample.Mvc.csproj", "{79CD20D3-C183-4566-A911-6BD42FDA784B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

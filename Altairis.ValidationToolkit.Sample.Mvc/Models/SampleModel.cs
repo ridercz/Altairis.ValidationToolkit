@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Altairis.ValidationToolkit.Sample.Models; 
+namespace Altairis.ValidationToolkit.Sample.Mvc.Models;
 public class SampleModel {
 
     public static readonly SampleModel SampleData = new() {
