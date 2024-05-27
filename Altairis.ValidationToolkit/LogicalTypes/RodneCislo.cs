@@ -4,11 +4,7 @@ using System.Text.RegularExpressions;
 
 namespace Altairis.ValidationToolkit.LogicalTypes {
 
-#if NET7_0_OR_GREATER
     public class RodneCislo : IParsable<RodneCislo>, IEquatable<RodneCislo> {
-#else
-    public class RodneCislo : IEquatable<RodneCislo> {
-#endif
 
         private string rawValue;
 
@@ -99,12 +95,8 @@ namespace Altairis.ValidationToolkit.LogicalTypes {
                 return false;
             }
         }
-
-#if NET7_0_OR_GREATER
                 
         public static bool TryParse([NotNullWhen(true)] string s, IFormatProvider provider, [MaybeNullWhen(false)] out RodneCislo result) => TryParse(s, out result);
-
-#endif
 
         // Implement IEquatable<RodneCislo>
 

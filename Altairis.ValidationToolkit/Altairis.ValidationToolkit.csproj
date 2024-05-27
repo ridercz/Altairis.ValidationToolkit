@@ -1,14 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net7</TargetFrameworks>
+    <TargetFrameworks>net8</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>3.0.1</Version>
+    <Version>4.0.0</Version>
     <Authors>Michal Altair Valášek - Altairis</Authors>
     <Company>Altairis</Company>
     <Product>Altairis Validation Toolkit</Product>
-    <Description>Set of various interesting .NET validation attributes. Works with .NET Standard 2.0.</Description>
-    <Copyright>Copyright (c) Michal A. Valášek - Altairis, 2014-2023</Copyright>
+    <Description>Set of various interesting .NET validation attributes.</Description>
+    <Copyright>Copyright (c) Michal A. Valášek - Altairis, 2014-2024</Copyright>
     <PackageProjectUrl>https://github.com/ridercz/Altairis.ValidationToolkit</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/ridercz/Altairis.ValidationToolkit.git</RepositoryUrl>
