@@ -1,10 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2010
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34902.65
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Altairis.ValidationToolkit.Sample", "Altairis.ValidationToolkit.Sample\Altairis.ValidationToolkit.Sample.csproj", "{F1F8F7C1-7EEE-41F2-BD2A-3D540304F643}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Altairis.ValidationToolkit", "Altairis.ValidationToolkit\Altairis.ValidationToolkit.csproj", "{C7C3C036-A648-4230-93C4-C92798D92859}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Altairis.ValidationToolkit.CoreSample", "Altairis.ValidationToolkit.CoreSample\Altairis.ValidationToolkit.CoreSample.csproj", "{FB3FA8D3-B278-4C68-B44E-9113961410B5}"
@@ -23,10 +21,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F1F8F7C1-7EEE-41F2-BD2A-3D540304F643}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F1F8F7C1-7EEE-41F2-BD2A-3D540304F643}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F1F8F7C1-7EEE-41F2-BD2A-3D540304F643}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F1F8F7C1-7EEE-41F2-BD2A-3D540304F643}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C7C3C036-A648-4230-93C4-C92798D92859}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C7C3C036-A648-4230-93C4-C92798D92859}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C7C3C036-A648-4230-93C4-C92798D92859}.Release|Any CPU.ActiveCfg = Release|Any CPU
