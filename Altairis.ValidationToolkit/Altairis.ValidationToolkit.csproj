@@ -14,6 +14,7 @@
 		<RepositoryUrl>https://github.com/ridercz/Altairis.ValidationToolkit.git</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageIcon>NuGet-64x64.png</PackageIcon>
+		<PackageOutputPath>../dist</PackageOutputPath>
 		<Title>Altairis Validation Toolkit</Title>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<IncludeSymbols>True</IncludeSymbols>
