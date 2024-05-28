@@ -1,5 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Altairis.ValidationToolkit;
 
-public class MarkdownAttribute() : DataTypeAttribute("Markdown") { }
+[AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter, AllowMultiple = false)]
+public sealed class MarkdownAttribute() : DataTypeAttribute("Markdown") { }

@@ -1,8 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Altairis.ValidationToolkit;
 
-public class SelectAttribute(string listPropertyName = null) : DataTypeAttribute("Select") {
+[AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter, AllowMultiple = false)]
+public sealed class SelectAttribute(string listPropertyName = null) : DataTypeAttribute("Select") {
 
     public string ListPropertyName { get; } = listPropertyName;
 
