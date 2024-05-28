@@ -26,7 +26,7 @@
                                 group p by a?.GroupName into g
                                 select new {
                                     Name = g.Key,
-                                    PropertyNames = g.Select(x=>x.Name)
+                                    PropertyNames = g.Select(x => x.Name)
                                 };
 
         foreach (var group in groupedProperties) {
@@ -50,6 +50,9 @@
             if (prop.IsComplexType && !(prop.ModelType.Equals(typeof(IFormFile)) || prop.ModelType.Equals(typeof(IFormFileCollection)))) {
                 // This is a complex type, so render a subobject template
                 <div class="editor-label">@Html.Label(prop.PropertyName)</div>
+                @if (!string.IsNullOrEmpty(prop.Description)) {
+                    <div class="editor-description">@prop.Description</div>
+                }
                 @Html.Editor(prop.PropertyName)
             } else if (prop.HideSurroundingHtml) {
                 // This is for a hidden input
@@ -60,9 +63,15 @@
                     @Html.Editor(prop.PropertyName) @Html.Label(prop.PropertyName)
                     @Html.ValidationMessage(prop.PropertyName)
                 </div>
+                @if (!string.IsNullOrEmpty(prop.Description)) {
+                    <div class="editor-description">@prop.Description</div>
+                }
             } else {
                 // This is for all other inputs
                 <div class="editor-label">@Html.Label(prop.PropertyName)</div>
+                @if (!string.IsNullOrEmpty(prop.Description)) {
+                    <div class="editor-description">@prop.Description</div>
+                }
                 <div class="editor-field">
                     @Html.Editor(prop.PropertyName)
                     @Html.ValidationMessage(prop.PropertyName)
