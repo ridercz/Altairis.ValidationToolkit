@@ -1,8 +1,7 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
 
-namespace Altairis.ValidationToolkit.LogicalTypes; 
+namespace Altairis.ValidationToolkit.LogicalTypes;
 
 public partial class RodneCislo : IParsable<RodneCislo>, IEquatable<RodneCislo> {
 

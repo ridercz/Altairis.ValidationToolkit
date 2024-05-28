@@ -1,9 +1,7 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
+﻿global using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 
-namespace Altairis.ValidationToolkit; 
+namespace Altairis.ValidationToolkit;
 
 internal static class ExtensionMethods {
 

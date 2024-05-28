@@ -1,8 +1,6 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using Altairis.ValidationToolkit.LogicalTypes;
+﻿using Altairis.ValidationToolkit.LogicalTypes;
 
-namespace Altairis.ValidationToolkit; 
+namespace Altairis.ValidationToolkit;
 
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter, AllowMultiple = false)]
 public sealed class RodneCisloAttribute : DataTypeAttribute {

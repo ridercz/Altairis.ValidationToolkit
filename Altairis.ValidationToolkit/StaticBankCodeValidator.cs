@@ -1,6 +1,4 @@
-﻿using System.Linq;
-
-namespace Altairis.ValidationToolkit; 
+﻿namespace Altairis.ValidationToolkit;
 public class StaticBankCodeValidator : IBankCodeValidator {
     // Bank codes avaliable from https://www.cnb.cz/cs/platebni-styk/.galleries/ucty_kody_bank/download/kody_bank_CR.csv
     // Valid as of 2023-10-30
