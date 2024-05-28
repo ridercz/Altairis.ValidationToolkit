@@ -12,5 +12,4 @@ public class SliderAttribute(int min, int max, int step = 1) : DataTypeAttribute
 
     public string ExtraFieldSuffix { get; set; } = "Extra";
 
-
 }
