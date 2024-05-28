@@ -9,7 +9,7 @@ public sealed partial class ColorAttribute : DataTypeAttribute {
         this.ErrorMessage = "Field {0} must be valid HTML color (#RRGGBB).";
     }
 
-    public override bool IsValid(object value) => value == null || (value is string s && ColorRegex().IsMatch(s));
+    public override bool IsValid(object? value) => value == null || (value is string s && ColorRegex().IsMatch(s));
     [GeneratedRegex(@"^\#[0-9A-Fa-f]{6}")]
     private static partial Regex ColorRegex();
 }

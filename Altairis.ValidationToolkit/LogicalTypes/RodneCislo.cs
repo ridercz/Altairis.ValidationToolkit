@@ -3,9 +3,9 @@ using System.Text.RegularExpressions;
 
 namespace Altairis.ValidationToolkit.LogicalTypes;
 
-public partial class RodneCislo : IParsable<RodneCislo>, IEquatable<RodneCislo> {
+public partial class RodneCislo : IParsable<RodneCislo?>, IEquatable<RodneCislo?> {
 
-    private string rawValue;
+    private string rawValue = string.Empty;
 
     // Properties
 
@@ -82,11 +82,11 @@ public partial class RodneCislo : IParsable<RodneCislo>, IEquatable<RodneCislo> 
         return year >= 1954 && long.Parse(s) % 11 > 0 ? throw new FormatException("Value contains invalid checksum") : r;
     }
     
-    public static RodneCislo Parse(string s, IFormatProvider provider) => Parse(s);
+    public static RodneCislo? Parse(string s, IFormatProvider? provider) => Parse(s);
 
-    public static bool TryParse(string s, out RodneCislo result) {
+    public static bool TryParse(string s, out RodneCislo? result) {
         try {
-            result = RodneCislo.Parse(s);
+            result = Parse(s);
             return true;
         } catch (Exception e) when (e is FormatException || e is ArgumentException) {
             result = null;
@@ -94,13 +94,13 @@ public partial class RodneCislo : IParsable<RodneCislo>, IEquatable<RodneCislo> 
         }
     }
             
-    public static bool TryParse([NotNullWhen(true)] string s, IFormatProvider provider, [MaybeNullWhen(false)] out RodneCislo result) => TryParse(s, out result);
+    public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, [MaybeNullWhen(false)] out RodneCislo result) => TryParse(s ?? string.Empty, out result);
 
     // Implement IEquatable<RodneCislo>
 
-    public bool Equals(RodneCislo other) => other != null && this.rawValue == other.rawValue;
+    public bool Equals(RodneCislo? other) => other is not null && this.rawValue == other.rawValue;
 
-    public override bool Equals(object obj) => this.Equals(obj as RodneCislo);
+    public override bool Equals(object? obj) => this.Equals(obj as RodneCislo);
 
     public override int GetHashCode() => this.rawValue.GetHashCode();
 

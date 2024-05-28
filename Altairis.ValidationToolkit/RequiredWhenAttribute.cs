@@ -24,7 +24,7 @@ public sealed class RequiredWhenAttribute : ValidationAttribute {
 
     public override bool RequiresValidationContext => true;
 
-    protected override ValidationResult IsValid(object value, ValidationContext validationContext) {
+    protected override ValidationResult? IsValid(object? value, ValidationContext validationContext) {
         // Always succeed on non-empty value
         if (value != null) return ValidationResult.Success;
 

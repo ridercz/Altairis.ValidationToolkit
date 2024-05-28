@@ -15,7 +15,7 @@ public sealed class DateOffsetAttribute : ValidationAttribute {
         this.MaximumDate = DateTime.Today.AddYears(yearsAfterCurrent);
     }
 
-    public DateOffsetAttribute(string beforeCurrent, string afterCurrent, Func<string> errorMessageAccessor) : base(errorMessageAccessor) {
+    public DateOffsetAttribute(string? beforeCurrent, string? afterCurrent, Func<string> errorMessageAccessor) : base(errorMessageAccessor) {
         TimeSpan beforeCurrentTs = TimeSpan.Zero, afterCurrentTs = TimeSpan.Zero;
         if (!string.IsNullOrEmpty(beforeCurrent) && !TimeSpan.TryParse(beforeCurrent, out beforeCurrentTs)) throw new ArgumentException("String cannot be parsed as TimeSpan.", nameof(beforeCurrent));
         if (!string.IsNullOrEmpty(afterCurrent) && !TimeSpan.TryParse(afterCurrent, out afterCurrentTs)) throw new ArgumentException("String cannot be parsed as TimeSpan.", nameof(afterCurrent));
@@ -24,7 +24,7 @@ public sealed class DateOffsetAttribute : ValidationAttribute {
         this.MaximumDate = DateTime.Now.Add(afterCurrentTs);
     }
 
-    public DateOffsetAttribute(string beforeCurrent, string afterCurrent, string errorMessage) : base(errorMessage) {
+    public DateOffsetAttribute(string? beforeCurrent, string? afterCurrent, string errorMessage) : base(errorMessage) {
         TimeSpan beforeCurrentTs = TimeSpan.Zero, afterCurrentTs = TimeSpan.Zero;
         if (!string.IsNullOrEmpty(beforeCurrent) && !TimeSpan.TryParse(beforeCurrent, out beforeCurrentTs)) throw new ArgumentException("String cannot be parsed as TimeSpan.", nameof(beforeCurrent));
         if (!string.IsNullOrEmpty(afterCurrent) && !TimeSpan.TryParse(afterCurrent, out afterCurrentTs)) throw new ArgumentException("String cannot be parsed as TimeSpan.", nameof(afterCurrent));
@@ -36,7 +36,7 @@ public sealed class DateOffsetAttribute : ValidationAttribute {
     public DateOffsetAttribute(int yearsBeforeCurrent, int yearsAfterCurrent)
         : this(yearsBeforeCurrent, yearsAfterCurrent, "{0} must be between {1:d} and {2:d}.") { }
 
-    public DateOffsetAttribute(string beforeCurrent, string afterCurrent)
+    public DateOffsetAttribute(string? beforeCurrent, string? afterCurrent)
         : this(beforeCurrent, afterCurrent, "{0} must be between {1:d} and {2:d}.") { }
 
     public bool CompareTime { get; set; }
@@ -47,7 +47,7 @@ public sealed class DateOffsetAttribute : ValidationAttribute {
 
     public override string FormatErrorMessage(string name) => string.Format(this.ErrorMessageString, name, this.MinimumDate, this.MaximumDate);
 
-    public override bool IsValid(object value) {
+    public override bool IsValid(object? value) {
         // Empty value is always valid
         if (value == null) return true;
 

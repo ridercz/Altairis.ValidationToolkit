@@ -9,11 +9,13 @@ public sealed class GreaterThanAttribute : ValidationAttribute {
     public GreaterThanAttribute(string otherPropertyName, Func<string> errorMessageAccessor)
         : base(errorMessageAccessor) {
         this.OtherPropertyName = otherPropertyName;
+        this.OtherPropertyDisplayName = otherPropertyName;
     }
 
     public GreaterThanAttribute(string otherPropertyName, string errorMessage)
         : base(errorMessage) {
         this.OtherPropertyName = otherPropertyName;
+        this.OtherPropertyDisplayName = otherPropertyName;
     }
 
     public bool AllowEqual { get; set; }
@@ -26,11 +28,11 @@ public sealed class GreaterThanAttribute : ValidationAttribute {
 
     public override string FormatErrorMessage(string name) => string.Format(this.ErrorMessageString, name, this.OtherPropertyDisplayName);
 
-    protected override ValidationResult IsValid(object value, ValidationContext validationContext) {
+    protected override ValidationResult? IsValid(object? value, ValidationContext validationContext) {
         // Get values
         IComparable comparableOtherValue;
         try {
-            comparableOtherValue = validationContext.GetPropertyValue<IComparable>(this.OtherPropertyName);
+            comparableOtherValue = validationContext.GetPropertyValue<IComparable>(this.OtherPropertyName) ?? throw new Exception();
         } catch (ArgumentException aex) {
             throw new InvalidOperationException("Other property not found", aex);
         }

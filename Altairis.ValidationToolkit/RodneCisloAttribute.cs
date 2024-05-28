@@ -9,7 +9,7 @@ public sealed class RodneCisloAttribute : DataTypeAttribute {
         this.ErrorMessage = "The field {0} must be valid rodné číslo (Czech personal identification number).";
     }
 
-    public override bool IsValid(object value) {
+    public override bool IsValid(object? value) {
         if (value == null) return true;         // Null values are valid
         if (value is not string s) return false; // Non-string values are invalid
 

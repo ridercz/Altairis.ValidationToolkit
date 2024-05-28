@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 namespace Altairis.ValidationToolkit;
 public partial class OnlineBankCodeValidator : IBankCodeValidator {
     private readonly OnlineBankCodeValidatorOptions options;
-    private IEnumerable<string> bankCodes;
+    private IEnumerable<string> bankCodes =[];
     private DateTime lastUpdate = DateTime.MinValue;
 
     public OnlineBankCodeValidator() {

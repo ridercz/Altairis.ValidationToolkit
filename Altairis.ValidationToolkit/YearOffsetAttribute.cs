@@ -21,7 +21,7 @@ public sealed class YearOffsetAttribute : ValidationAttribute {
 
     public override string FormatErrorMessage(string name) => string.Format(this.ErrorMessageString, name, this.MinimumYear, this.MaximumYear);
 
-    public override bool IsValid(object value) {
+    public override bool IsValid(object? value) {
         // Empty value is always valid
         if (value == null) return true;
 

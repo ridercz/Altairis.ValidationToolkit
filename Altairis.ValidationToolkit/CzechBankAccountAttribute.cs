@@ -11,7 +11,7 @@ public sealed partial class CzechBankAccountAttribute : DataTypeAttribute {
         this.ErrorMessage = "The field {0} must be a valid Czech bank account number.";
     }
 
-    public override bool IsValid(object value) {
+    public override bool IsValid(object? value) {
         if (value == null) return true;          // Null values are valid
         if (value is not string s) return false; // Non-string values are invalid
 
@@ -39,11 +39,13 @@ public sealed partial class CzechBankAccountAttribute : DataTypeAttribute {
         return validatePart(prefix, isPrefix: true) && validatePart(number, isPrefix: false) && this.bankCodeValidator.Validate(bankCode);
     }
 
-    protected override ValidationResult IsValid(object value, ValidationContext validationContext) {
-        this.bankCodeValidator = (IBankCodeValidator)validationContext.GetService(typeof(IBankCodeValidator)) ?? this.bankCodeValidator;
-        return this.IsValid(value)
+    protected override ValidationResult? IsValid(object? value, ValidationContext validationContext) {
+        this.bankCodeValidator = (IBankCodeValidator?)validationContext.GetService(typeof(IBankCodeValidator)) ?? this.bankCodeValidator;
+        return value == null
             ? ValidationResult.Success
-            : new ValidationResult(this.FormatErrorMessage(validationContext.MemberName), new string[] { validationContext.MemberName });
+            : this.IsValid(value)
+            ? ValidationResult.Success
+            : (ValidationResult?)new ValidationResult(this.FormatErrorMessage(validationContext.MemberName ?? string.Empty), [validationContext.MemberName ?? string.Empty]);
     }
 
     [GeneratedRegex(@"^(?:(?<prefix>\d{1,6})-)?(?<number>\d{2,10})/(?<code>\d{4})$")]

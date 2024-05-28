@@ -9,7 +9,7 @@ public sealed partial class IcoAttribute : DataTypeAttribute {
         this.ErrorMessage = "The field {0} must be valid IČO (Czech identification number of person).";
     }
 
-    public override bool IsValid(object value) {
+    public override bool IsValid(object? value) {
         if (value == null) return true;         // Null values are valid
         if (value is not string s) return false; // Non-string values are invalid
 
