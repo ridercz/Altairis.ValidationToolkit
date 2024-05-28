@@ -28,6 +28,9 @@ public class EditorTemplatesDemoModel : PageModel {
         [DataType(DataType.MultilineText)]
         public string MultiLineText { get; set; } = string.Empty;
 
+        [DataType(DataType.Html)]
+        public string HtmlCode { get; set; } = string.Empty;
+
         // Hidden fields
 
         [HiddenInput]
