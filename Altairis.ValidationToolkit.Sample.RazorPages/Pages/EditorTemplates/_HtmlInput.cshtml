@@ -3,10 +3,14 @@
 
     // Add basic attributes
     var htmlAttributes = new Dictionary<string, object?> {
-        { "class", ViewData["additionalCssClass"] },
-        { "type", ViewData["type"] as string },
-        { "placeholder", ViewData.ModelMetadata.Placeholder },
+        { "type", ViewData["type"] as string ?? "text" },
     };
+    if (!string.IsNullOrEmpty(ViewData["additionalCssClass"] as string)) {
+        htmlAttributes["class"] = ViewData["additionalCssClass"];
+    }
+    if(!string.IsNullOrEmpty(ViewData.ModelMetadata.Placeholder)) {
+        htmlAttributes["placeholder"] = ViewData.ModelMetadata.Placeholder;
+    }
 
     // Add additional attributes from ViewData
     foreach (var item in ViewData.Where(x => x.Key.StartsWith("attrib-"))) {
