@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<TargetFrameworks>net8</TargetFrameworks>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<Version>4.1.0</Version>
+		<Version>4.1.1</Version>
 		<Authors>Michal Altair Valášek - Altairis</Authors>
 		<Company>Altairis</Company>
 		<Product>Altairis Validation Toolkit</Product>
