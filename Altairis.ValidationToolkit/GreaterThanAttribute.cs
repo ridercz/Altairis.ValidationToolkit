@@ -30,9 +30,9 @@ public sealed class GreaterThanAttribute : ValidationAttribute {
 
     protected override ValidationResult? IsValid(object? value, ValidationContext validationContext) {
         // Get values
-        IComparable comparableOtherValue;
+        IComparable? comparableOtherValue;
         try {
-            comparableOtherValue = validationContext.GetPropertyValue<IComparable>(this.OtherPropertyName) ?? throw new Exception();
+            comparableOtherValue = validationContext.GetPropertyValue<IComparable>(this.OtherPropertyName);
         } catch (ArgumentException aex) {
             throw new InvalidOperationException("Other property not found", aex);
         }
