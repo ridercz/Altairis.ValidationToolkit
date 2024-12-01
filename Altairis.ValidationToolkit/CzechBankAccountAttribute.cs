@@ -25,9 +25,7 @@ public sealed partial class CzechBankAccountAttribute : DataTypeAttribute {
 
         // Validate parts
         static bool validatePart(string part, bool isPrefix) {
-            if (string.IsNullOrEmpty(part)) return isPrefix;
-            if (!isPrefix && int.Parse(part) == 0) return false;
-
+            if (string.IsNullOrEmpty(part) || ulong.Parse(part) == 0) return isPrefix;
             var chs = 0;
             for (var i = 0; i < part.Length; i++) {
                 var num = int.Parse(part.Substring(i, 1));
