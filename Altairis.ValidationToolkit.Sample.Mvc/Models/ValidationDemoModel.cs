@@ -18,7 +18,7 @@ public class ValidationDemoModel {
     [DateOffset(-100, 0)]
     public DateTime? DateOfBirth { get; set; }
 
-    [DataType(DataType.Date), Display(Name = "Date in next 30 days:")]
+    [DataType(DataType.Date), Display(Name = "Date in next 30 days")]
     [DateOffset(null, "30.00:00:00")]
     public DateTime? NextMonthDate { get; set; }
 
