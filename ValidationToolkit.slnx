@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".gitignore" />
+    <File Path="CODE_OF_CONDUCT.md" />
+    <File Path="LICENSE.md" />
+    <File Path="README.md" />
+  </Folder>
+  <Project Path="Altairis.ValidationToolkit.Sample.Mvc/Altairis.ValidationToolkit.Sample.Mvc.csproj" />
+  <Project Path="Altairis.ValidationToolkit.Sample.RazorPages/Altairis.ValidationToolkit.Sample.RazorPages.csproj" />
+  <Project Path="Altairis.ValidationToolkit/Altairis.ValidationToolkit.csproj" />
+</Solution>
