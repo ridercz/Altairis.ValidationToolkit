@@ -7,6 +7,7 @@ Altairis Validation Toolkit strives to make dynamic generation of user interface
 * **Validation attributes** to validate properties and models in .NET, to extend the ones found in `System.ComponentModel.DataAnnotations` namespace. It has several Czech Republic specific ones (to validate IČO, rodné číslo and Czech bank account number), but others are generally usable, ie. `[RequiredWhen]` or `GreaterThan`.
 * **Display attributes** defining some commonly used logical types, like `[Color]`, or user interface elements (like `[Slider]` or `[Select]`).
 * **Editor templates** for both standard types and types defined by new attributes above. Also it contains very powerfull `Object.cshtml` template that can render entire forms, including nested complex types and supporting property groups. All templates are clean, modern, semantic HTML5, easy to style using CSS.
+* **Options validators** for recursively validating complex options objects, including nested properties and collections.
 
 > The library is compatible with .NET 8 and above. Last version to support .NET Standard 2.0 is 3.0.1.
 
